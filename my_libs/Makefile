@@ -6,39 +6,34 @@
 #    By: bswag <bswag@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/20 17:19:13 by bswag             #+#    #+#              #
-#    Updated: 2021/01/29 20:25:14 by bswag            ###   ########.fr        #
+#    Updated: 2021/01/29 20:09:04 by bswag            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME =	cub3D
-SRC =	main.c \
-		input_parser.c
-OBJ = $(SRC:%.c=%.o)
-LIB = libcub.a
-MLX = libmlx.a
-PATHLIB = my_libs/
-PATHMLX = mlx/
-INC = includes
+NAME =		libcub.a
+SRCS =		get_next_line.c \
+			get_next_line_utils.c
+PATHSRC =	./GNL
+OBJS =	$(SRCS:%.c=%.o)
+LIB =		libftprintf.a
+PATHLIB = ./ft_printf
 CC = gcc
 CFLAGS = -c -Wall -Wextra -Werror
+DEPS = $(PATHSRC)get_next_line.h
 
 .PHONY: all clean fclean re bonus
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(PATHLIB)$(LIB) $(PATHMLX)$(MLX)	
-	make -C mlx
-	$(CC) $(OBJ) -L$(PATHMLX) -lmlx -L$(PATHLIB) -lcub -framework OpenGL \
-	-framework AppKit -o $(NAME)
+$(NAME): $(OBJS) $(PATHLIB)$(LIB)
+	cp $(PATHLIB)$(LIB) ./$(NAME)
+	ar -rcs $(NAME) $(OBJS)
 
-$(PATHMLX)$(MLX):
-	make -C $(PATHMLX)
-	
-$(PATHLIB)$(LIB):
-	make -C $(PATHLIB)
+$(PATHLIB)libftprintf.a:
+	make -C $(PATHLIB)		
 
-%.o: %.c
-	$(CC) $(CFLAGS) -I$(INC) -o $@ $<
+%.o: %.c $(DEPS)
+	$(CC) $(CFLAGS) -o $@ $<
 
 bonus: all
 
