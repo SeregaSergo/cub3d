@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 19:22:40 by bswag             #+#    #+#             */
-/*   Updated: 2021/01/29 12:57:36 by bswag            ###   ########.fr       */
+/*   Updated: 2021/01/30 15:52:50 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,11 @@
 #include <stdio.h>
 #include <math.h>
 
-#define ER_ARG      2
-#define ER_READ     3
+#define ER_ARG              2
+#define ER_READ             3
+#define ER_WRONG_PARAM      4
+#define ER_MEMMORY_LACK     5
+#define 
 
 # define P_EMPTY		0b00000000
 # define P_R      		0b00000001
@@ -36,6 +39,7 @@
 # define P_S     		0b00100000
 # define P_F       		0b01000000 
 # define P_C   	    	0b10000000
+# define P_ERR          0b11111110
 
 typedef struct  s_base {
     void        *mlx;
