@@ -6,13 +6,14 @@
 #    By: bswag <bswag@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/20 17:19:13 by bswag             #+#    #+#              #
-#    Updated: 2021/01/29 20:25:14 by bswag            ###   ########.fr        #
+#    Updated: 2021/02/01 22:30:39 by bswag            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME =	cub3D
 SRC =	main.c \
-		input_parser.c
+		input_parser.c \
+		process_flags.c
 OBJ = $(SRC:%.c=%.o)
 LIB = libcub.a
 MLX = libmlx.a

@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 19:22:40 by bswag             #+#    #+#             */
-/*   Updated: 2021/01/30 15:52:50 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/01 21:52:02 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 #define ER_READ             3
 #define ER_WRONG_PARAM      4
 #define ER_MEMMORY_LACK     5
-#define 
+#define ER_NOT_ENOUGH_INFO  6
 
 # define P_EMPTY		0b00000000
 # define P_R      		0b00000001
@@ -42,31 +42,39 @@
 # define P_ERR          0b11111110
 
 typedef struct  s_base {
-    void        *mlx;
-    void        *win;
-    
-    void        *img;
-    char        *addr;
-    int         bits_per_pixel;
-    int         line_length;
-    int         endian;
-    
-    int         hight;
-    int         width;
-    char        *NO;
-    char        *SO;
-    char        *WE;
-    char        *EA;
-    char        *sprite;
-    int         col_floor;
-    int         col_ceiling;
-    char        **map;
+	void		*mlx;
+	void		*win;
+	
+	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+	
+	int			hight;
+	int			width;
+	void		*NO;
+	void		*SO;
+	void		*WE;
+	void		*EA;
+	void		*S;
+	int			col_floor;
+	int			col_ceiling;
+	char		**map;
 
-    int         x_mouse;
-    int         y_mouse;
-}               t_base;
+	int			x_mouse;
+	int			y_mouse;
+}				t_base;
 
-int     parse_input(char *file, t_base *base);
-void	my_mlx_pixel_put(t_base *base, int x, int y, int color)
+void	parse_input(char *file, t_base *base);
+void	my_mlx_pixel_put(t_base *base, int x, int y, int color);
+int		process_color_FC(unsigned char flag, char *str, t_base *base);
+int		process_xpm(unsigned char flag, char *file, t_base *base);
+int		process_R(char *wdth, char *hght, t_base *base);
+int		ft_str_content(char *str, char *pattern);
+int		ft_char_in_set(char c, char *pattern);
+void	free_arr_str(char **list);
+void	ft_error(unsigned char er);
+int		ft_arrlen(char **str);
 
 #endif

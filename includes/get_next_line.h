@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/20 14:28:41 by bswag             #+#    #+#             */
-/*   Updated: 2020/11/30 19:32:17 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/01 21:39:22 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <unistd.h>
 # include <sys/types.h>
 # include <sys/uio.h>
+# include "./libft.h"
 
 typedef struct		s_fd_data
 {
@@ -28,17 +29,10 @@ typedef struct		s_fd_data
 	char			*rem;
 }					t_fd_data;
 
-typedef struct		s_list
-{
-	t_fd_data		*content;
-	struct s_list	*next;
-}					t_list;
-
 int					get_next_line(int fd, char **line);
-int					ft_strchr(const char *s, int c);
-char				*ft_substr(char const *s, unsigned int start, size_t len);
-char				*ft_strjoin(char const *s1, char const *s2);
-size_t				ft_strlen(const char *str);
-size_t				ft_strlcpy(char *dst, const char *src, size_t dstsize);
+int					gnl_strchr(const char *s, int c);
+char				*gnl_substr(char const *s, unsigned int start, size_t len);
+char				*gnl_strjoin(char const *s1, char const *s2);
+size_t				gnl_strlcpy(char *dst, const char *src, size_t dstsize);
 
 #endif

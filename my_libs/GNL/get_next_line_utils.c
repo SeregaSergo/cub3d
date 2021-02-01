@@ -6,13 +6,13 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 16:29:15 by bswag             #+#    #+#             */
-/*   Updated: 2020/11/30 18:30:05 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/01 22:10:25 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*gnl_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*ptr;
 	int		size_of_sub_str;
@@ -27,14 +27,14 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		ptr = (char *)malloc(size_of_sub_str + 1);
 		if (!ptr)
 			return (NULL);
-		ft_strlcpy(ptr, &s[start], size_of_sub_str + 1);
+		gnl_strlcpy(ptr, &s[start], size_of_sub_str + 1);
 		return (ptr);
 	}
 	else
 		return (NULL);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*gnl_strjoin(char const *s1, char const *s2)
 {
 	int		len1;
 	int		len2;
@@ -49,24 +49,12 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	ptr = (char *)malloc(len1 + len2 + 1);
 	if (!ptr)
 		return (NULL);
-	ft_strlcpy(ptr, s1, len1 + 1);
-	ft_strlcpy(&ptr[len1], s2, len2 + 1);
+	gnl_strlcpy(ptr, s1, len1 + 1);
+	gnl_strlcpy(&ptr[len1], s2, len2 + 1);
 	return (ptr);
 }
 
-size_t	ft_strlen(const char *str)
-{
-	size_t cntr;
-
-	cntr = 0;
-	while (str[cntr] != 0)
-	{
-		cntr++;
-	}
-	return (cntr);
-}
-
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+size_t	gnl_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	const char	*ptr;
 
@@ -89,7 +77,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 		return (0);
 }
 
-int		ft_strchr(const char *s, int c)
+int		gnl_strchr(const char *s, int c)
 {
 	int		i;
 

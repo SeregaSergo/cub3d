@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 19:47:39 by bswag             #+#    #+#             */
-/*   Updated: 2020/12/25 19:39:02 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/01 21:38:40 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FT_PRINTF_H
 
 # include <stdarg.h>
-# include "./libft/libft.h"
+# include "./libft.h"
 # include <stdlib.h>
 # include <unistd.h>
 

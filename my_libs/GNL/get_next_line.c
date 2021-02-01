@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/20 21:52:34 by bswag             #+#    #+#             */
-/*   Updated: 2020/11/30 19:28:04 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/01 22:24:11 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 ** with the same fd. If function doesn't find element it will be created.
 */
 
-static t_fd_data	*find_fd(int fd, t_list **fd_list)
+static t_fd_data	*find_fd(int fd, t_lstg **fd_list)
 {
 	t_fd_data	*ptr_fd;
-	t_list		*ptr_lst;
+	t_lstg		*ptr_lst;
 
 	ptr_lst = *fd_list;
 	while (ptr_lst)
@@ -31,7 +31,7 @@ static t_fd_data	*find_fd(int fd, t_list **fd_list)
 	}
 	if (!(ptr_fd = (t_fd_data *)malloc(sizeof(t_fd_data))))
 		return (NULL);
-	if (!(ptr_lst = (t_list *)malloc(sizeof(t_list))))
+	if (!(ptr_lst = (t_lstg *)malloc(sizeof(t_lstg))))
 	{
 		free(ptr_fd);
 		return (NULL);
@@ -53,7 +53,7 @@ static int			ft_read(t_fd_data *fd_data, char *buf)
 	if (chars < 0)
 		return (chars);
 	buf[chars] = '\0';
-	if (!(tmp_str = ft_strjoin(fd_data->rem, buf)))
+	if (!(tmp_str = gnl_strjoin(fd_data->rem, buf)))
 		return (-1);
 	free(fd_data->rem);
 	fd_data->rem = tmp_str;
@@ -65,10 +65,10 @@ static int			ft_read(t_fd_data *fd_data, char *buf)
 ** fd and delete it in a safe way.
 */
 
-static void			ft_del_fd(int fd, t_list **fd_list)
+static void			ft_del_fd(int fd, t_lstg **fd_list)
 {
-	t_list	**ptr;
-	t_list	*tmp_adr;
+	t_lstg	**ptr;
+	t_lstg	*tmp_adr;
 
 	ptr = fd_list;
 	while ((*ptr)->content->fd != fd)
@@ -81,15 +81,15 @@ static void			ft_del_fd(int fd, t_list **fd_list)
 
 int					get_next_line(int fd, char **line)
 {
-	static t_list		*fd_list;
-	t_fd_data			*data;
-	int					pos_char;
-	char				*buf;
+	static t_lstg	*fd_list;
+	t_fd_data		*data;
+	int				pos_char;
+	char			*buf;
 
 	if (BUFFER_SIZE <= 0 || fd < 0 || !line || !(data = find_fd(fd, &fd_list)) \
 			|| !(buf = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char))))
 		return (-1);
-	while ((pos_char = ft_strchr(data->rem, '\n')) < 0)
+	while ((pos_char = gnl_strchr(data->rem, '\n')) < 0)
 	{
 		if ((pos_char = ft_read(data, buf)) < 1)
 		{
@@ -101,8 +101,8 @@ int					get_next_line(int fd, char **line)
 		}
 	}
 	free(buf);
-	if (!(*line = ft_substr(data->rem, 0, pos_char)))
+	if (!(*line = gnl_substr(data->rem, 0, pos_char)))
 		return (-1);
-	ft_strlcpy(data->rem, &(data->rem[pos_char + 1]), ft_strlen(data->rem));
+	gnl_strlcpy(data->rem, &(data->rem[pos_char + 1]), ft_strlen(data->rem));
 	return (1);
 }
