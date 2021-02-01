@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 19:22:40 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/01 21:52:02 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/01 23:11:47 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,12 @@
 # define P_C   	    	0b10000000
 # define P_ERR          0b11111110
 
+typedef struct  s_xpm {
+	void	*xpm;
+	int		width;
+	int		hight;
+}				t_xpm;
+
 typedef struct  s_base {
 	void		*mlx;
 	void		*win;
@@ -53,11 +59,11 @@ typedef struct  s_base {
 	
 	int			hight;
 	int			width;
-	void		*NO;
-	void		*SO;
-	void		*WE;
-	void		*EA;
-	void		*S;
+	t_xpm		*NO;
+	t_xpm		*SO;
+	t_xpm		*WE;
+	t_xpm		*EA;
+	t_xpm		*S;
 	int			col_floor;
 	int			col_ceiling;
 	char		**map;

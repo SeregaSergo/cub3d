@@ -6,7 +6,7 @@
 #    By: bswag <bswag@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/20 17:19:13 by bswag             #+#    #+#              #
-#    Updated: 2021/02/01 22:30:39 by bswag            ###   ########.fr        #
+#    Updated: 2021/02/01 23:27:08 by bswag            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,16 +27,11 @@ CFLAGS = -c -Wall -Wextra -Werror
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(PATHLIB)$(LIB) $(PATHMLX)$(MLX)	
-	make -C mlx
+$(NAME): $(OBJ)
+	make -C $(PATHMLX)	
+	make -C $(PATHLIB)
 	$(CC) $(OBJ) -L$(PATHMLX) -lmlx -L$(PATHLIB) -lcub -framework OpenGL \
 	-framework AppKit -o $(NAME)
-
-$(PATHMLX)$(MLX):
-	make -C $(PATHMLX)
-	
-$(PATHLIB)$(LIB):
-	make -C $(PATHLIB)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -I$(INC) -o $@ $<

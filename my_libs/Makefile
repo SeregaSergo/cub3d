@@ -6,7 +6,7 @@
 #    By: bswag <bswag@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/20 17:19:13 by bswag             #+#    #+#              #
-#    Updated: 2021/02/01 22:28:18 by bswag            ###   ########.fr        #
+#    Updated: 2021/02/01 23:27:43 by bswag            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,16 +25,14 @@ DEPS = $(PATHSRC)get_next_line.h
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(PATHLIB)$(LIB)
+$(NAME): $(OBJS)
+	make -C $(PATHLIB)
 	cp $(PATHLIB)$(LIB) ./$(NAME)
 	ar -rcs $(NAME) $(OBJS)
 
 %.o: $(PATHSRC)%.c $(DEPS)
 	$(CC) $(CFLAGS) -o $@ $<
 	
-$(PATHLIB)$(LIB):
-	make -C $(PATHLIB)		
-
 bonus: all
 
 clean:

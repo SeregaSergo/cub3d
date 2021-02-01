@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 17:46:28 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/01 21:51:10 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/01 23:11:57 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,21 +58,26 @@ int process_R(char *wdth, char *hght, t_base *base)
 
 int process_xpm(unsigned char flag, char *file, t_base *base)
 {
-    void    *tmp;
-
-    if (!(tmp = mlx_xpm_file_to_image(base->mlx, file, 100, 100)))
+    t_xpm   *ptr;
+    
+    if (!(ptr = (t_xpm *)ft_calloc(1, sizeof(t_xpm))))
         return (1);
+    if (!(ptr->xpm = mlx_xpm_file_to_image(base->mlx, file, &ptr->width, &ptr->hight)))
+    {
+        free(ptr);
+        return (1);
+    }
     if (flag == P_NO)
-        base->NO = tmp;
+        base->NO = ptr;
     else if (flag == P_SO)
-        base->SO = tmp;
+        base->SO = ptr;
     else if (flag == P_WE)
-        base->WE = tmp;
+        base->WE = ptr;
     else if (flag == P_EA)
-        base->EA = tmp;
+        base->EA = ptr;
     else if (flag == P_S)
-        base->S = tmp;
-    return (0);        
+        base->S = ptr;
+    return (0);
 }
 
 int process_color_FC(unsigned char flag, char *str, t_base *base)
@@ -85,7 +90,7 @@ int process_color_FC(unsigned char flag, char *str, t_base *base)
     if (!ft_str_content(str, "0123456789,") || !(list = ft_split(str, ',')) || ft_arrlen(list) != 3)
         return (1);
     i = 0;
-    result;
+    result = 0;
     while (i < 3)
     {
         if ((tmp = ft_atoi(list[0])) > 255)
@@ -93,7 +98,7 @@ int process_color_FC(unsigned char flag, char *str, t_base *base)
             free_arr_str(list);
             return (1);
         }
-        result = result << 8 + tmp;
+        result = (result << 8) + tmp;
         i++;
     }
     if (flag == P_C)

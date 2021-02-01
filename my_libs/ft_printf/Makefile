@@ -6,7 +6,7 @@
 #    By: bswag <bswag@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/20 17:19:13 by bswag             #+#    #+#              #
-#    Updated: 2021/01/29 19:58:24 by bswag            ###   ########.fr        #
+#    Updated: 2021/02/01 23:25:12 by bswag            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,12 +33,10 @@ DEPS = ft_printf.h
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(PATHLIB)libft.a
+$(NAME): $(OBJS)
+	make -C $(PATHLIB) bonus
 	cp $(PATHLIB)libft.a ./$(NAME)
-	ar -rcs $(NAME) $(OBJS)
-
-$(PATHLIB)libft.a:
-	make -C $(PATHLIB)		
+	ar -rcs $(NAME) $(OBJS)		
 
 %.o: %.c $(DEPS)
 	$(CC) $(CFLAGS) -o $@ $<
