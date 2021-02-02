@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 19:22:40 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/01 23:11:47 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/02 19:24:18 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "./libft.h"
 #include "./get_next_line.h"
 #include "./ft_printf.h"
-#include <mlx.h>
+#include "./mlx.h"
 #include <sys/errno.h>
 #include <fcntl.h>
 #include <sys/types.h>
@@ -82,5 +82,6 @@ int		ft_char_in_set(char c, char *pattern);
 void	free_arr_str(char **list);
 void	ft_error(unsigned char er);
 int		ft_arrlen(char **str);
+char	**make_map(t_list **head, int size);
 
 #endif

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bswag <marvin@42.fr>                       +#+  +:+       +#+         #
+#    By: bswag <bswag@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/09 14:09:47 by bswag             #+#    #+#              #
-#    Updated: 2020/12/23 20:40:04 by bswag            ###   ########.fr        #
+#    Updated: 2021/02/02 19:16:59 by bswag            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,9 @@ SRCS = ft_strlcat.c \
 	   ft_strtoupper.c \
 	   ft_lutoa_base.c \
 	   ft_write_param.c \
-	   ft_strchr_null.c
+	   ft_strchr_null.c \
+	   ft_char_in_set.c \
+	   ft_str_content.c
 SRCSBNS = ft_lstnew.c \
 		  ft_lstadd_front.c \
 		  ft_lstsize.c \

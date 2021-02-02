@@ -6,7 +6,7 @@
 #    By: bswag <bswag@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/20 17:19:13 by bswag             #+#    #+#              #
-#    Updated: 2021/02/01 23:25:12 by bswag            ###   ########.fr        #
+#    Updated: 2021/02/02 19:28:40 by bswag            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRCS = ft_printf.c \
 	   ./processor/process_char.c
 OBJS = $(SRCS:%.c=%.o)
 PATHLIB = ../libft/
+LIB = libft.a
 CC = gcc
 CFLAGS = -c -Wall -Wextra -Werror
 DEPS = ft_printf.h
@@ -33,10 +34,12 @@ DEPS = ft_printf.h
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	make -C $(PATHLIB) bonus
+$(NAME): $(OBJS) $(LIB)
 	cp $(PATHLIB)libft.a ./$(NAME)
-	ar -rcs $(NAME) $(OBJS)		
+	ar -rcs $(NAME) $(OBJS)	
+
+$(LIB):
+	$(MAKE) bonus -C $(PATHLIB)
 
 %.o: %.c $(DEPS)
 	$(CC) $(CFLAGS) -o $@ $<
