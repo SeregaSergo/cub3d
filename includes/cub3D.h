@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 19:22:40 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/02 21:36:21 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/04 01:11:29 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@
 # define P_C   	    	0b10000000
 # define P_ERR          0b11111110
 
+# define SCALE			15
+
 typedef struct  s_xpm {
 	void	*xpm;
 	int		width;
@@ -54,7 +56,7 @@ typedef struct  s_base {
 	
 	void		*img;
 	char		*addr;
-	int			bits_per_pixel;
+	int			bpp;
 	int			line_length;
 	int			endian;
 	
@@ -69,6 +71,10 @@ typedef struct  s_base {
 	int			col_ceiling;
 	char		**map;
 
+	float		plr_x;
+	float		plr_y;
+	float		dir;
+	
 	int			x_mouse;
 	int			y_mouse;
 }				t_base;

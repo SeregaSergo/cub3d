@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 18:03:14 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/03 17:42:54 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/03 23:49:25 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	ft_error(unsigned char er)
 unsigned char	what_flag(char *s)
 {
 	int	len;
-	
 	
 	if (s == NULL)
 		return (P_EMPTY);
@@ -131,6 +130,42 @@ void    parse_line(char *line, t_base *base, unsigned char *flags)
 	*flags = *flags | flag;
 }
 
+void	put_param_plr(t_base *base, int i, int j)
+{
+	if (base->map[i][j] == 'W')
+		base->dir = M_PI;
+	else if (base->map[i][j] == 'N')
+		base->dir = M_PI + M_PI_2;
+	else if (base->map[i][j] == 'E')
+		base->dir = 0;
+	else if (base->map[i][j] == 'S')
+		base->dir = M_PI_2;
+	base->plr_x = j * SCALE;
+	base->plr_y = i * SCALE;
+}
+
+void	initialize_plr(t_base *base)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (base->map[i])
+	{
+		j = 0;
+		while (base->map[i][j])
+		{
+			if (ft_char_in_set(base->map[i][j], "WENS"))
+			{
+				put_param_plr(base, i, j);
+				base->map[i][j] = '0';
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
 void	parse_input(char *file, t_base *base)
 {
 	int				fd;
@@ -157,4 +192,5 @@ void	parse_input(char *file, t_base *base)
 	}
 	ft_lstadd_back(&head, ft_lstnew(line));
 	base->map = make_map(&head, ft_lstsize(head));
+	initialize_plr(base);
 }
