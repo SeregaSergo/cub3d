@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 18:03:14 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/02 23:17:43 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/03 17:42:54 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	ft_error(unsigned char er)
 		ft_printf("Not enough memmory to allocate.");
 	else if (er == ER_NOT_ENOUGH_INFO)
 		ft_printf("Needed more information about the map.");
+	else if (er == ER_NOT_VALID_MAP)
+		ft_printf("The map is not valid.");
 	exit(1);
 }
 

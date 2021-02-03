@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 19:10:12 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/03 17:00:39 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/03 18:44:03 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,56 @@ int		process_map_list(t_list **head)
 	return (i - 2);
 }
 
+int			wall_surrounded(int i, int j, char **map)
+{
+	int	a;
+	int	b;
+
+	a = i - 1;
+	while (a < (i + 2))
+	{
+		b = j - 1;
+		while (b < (j + 2))
+		{
+			if (map[a][b] == ' ')
+				return (0);
+			b++;
+		}
+		a++;
+	}
+	return (1);
+}
+
+void		validate_map(char **map)
+{
+	int		i;
+	int		j;
+	char	flag;
+
+	i = 1;
+	flag = 0;
+	while (map[i])
+	{
+		j = 1;
+		while (map[i][j])
+		{
+			if (!ft_char_in_set(map[i][j], "012WENS "))
+				ft_error(ER_NOT_VALID_MAP);
+			else if (ft_char_in_set(map[i][j], "02WENS"))
+			{
+				if (!wall_surrounded(i, j, map))
+					ft_error(ER_NOT_VALID_MAP);
+				if (ft_char_in_set(map[i][j], "WENS"))
+					flag++;
+			}
+			j++;
+		}
+		i++;
+	}
+	if (flag != 1)
+		ft_error(ER_NOT_VALID_MAP);
+}
+
 char	**make_map(t_list **head, int size)
 {
 	char	**map;
@@ -155,7 +205,7 @@ char	**make_map(t_list **head, int size)
 
 	size -= process_map_list(head);
 	if (!(map = ft_calloc(size + 1, sizeof(char *))))
-		return (NULL);
+		ft_error(ER_MEMMORY_LACK);
 	i = -1;
 	ptr = *head;
 	while (ptr)
@@ -163,10 +213,6 @@ char	**make_map(t_list **head, int size)
 		map[++i] = ptr->content;
 		ptr = ptr->next;
 	}
-	/*if (validate_map(map))
-	{
-		ft_free_map(map);
-		ft_error(ER_NOT_VALID_MAP);
-	}*/
+	validate_map(map);
 	return (map);
 }
