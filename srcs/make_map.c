@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 19:10:12 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/03 18:44:03 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/03 19:14:31 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,23 @@ void	ft_free_map(char **map)
 		free(map[i]);
 		i++;
 	}
+}
+
+void	ft_free_lst(t_list **lst)
+{
+	t_list	*ptr;
+	t_list	*tmp;
+
+	ptr = *lst;
+	*lst = NULL;
+	while (ptr)
+	{
+		tmp = ptr;
+		ptr = ptr->next;
+		free(tmp);
+	}
+	tmp = NULL;
+	ptr = NULL;
 }
 
 void	*ft_lst_proc_line(void *content, int size)
@@ -213,6 +230,7 @@ char	**make_map(t_list **head, int size)
 		map[++i] = ptr->content;
 		ptr = ptr->next;
 	}
+	ft_free_lst(head);
 	validate_map(map);
 	return (map);
 }
