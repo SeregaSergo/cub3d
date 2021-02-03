@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 17:46:28 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/02 19:18:46 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/02 21:32:37 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ int process_color_FC(unsigned char flag, char *str, t_base *base)
             free_arr_str(list);
             return (1);
         }
-        ft_printf("Result %i\nTmp %i\n", result, tmp);
         result = (result << 8) + tmp;
         i++;
     }

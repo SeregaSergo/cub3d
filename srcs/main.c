@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 19:16:33 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/02 17:42:40 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/02 22:10:03 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ int	loop_hook(t_base *base)
 void	print_base(t_base *base)
 {
 	int i = 0;
-	ft_printf("BPP = %i\nEndian = %i\nWidth = %i\nHight = %i\nColor of floor = %i\n", base->bits_per_pixel, \
-	base->endian, base->width, base->hight, base->col_floor);
+	/*ft_printf("BPP = %i\nEndian = %i\nWidth = %i\nHight = %i\nColor of floor = %i\n", base->bits_per_pixel, \
+	base->endian, base->width, base->hight, base->col_floor); */
 	while(base->map[i])
 	{
 		ft_printf("%s\n", base->map[i]);

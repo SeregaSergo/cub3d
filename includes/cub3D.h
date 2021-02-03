@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 19:22:40 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/02 19:24:18 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/02 21:36:21 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 #define ER_WRONG_PARAM      4
 #define ER_MEMMORY_LACK     5
 #define ER_NOT_ENOUGH_INFO  6
+#define ER_NOT_VALID_MAP	7
 
 # define P_EMPTY		0b00000000
 # define P_R      		0b00000001

@@ -6,7 +6,7 @@
 #    By: bswag <bswag@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/20 17:19:13 by bswag             #+#    #+#              #
-#    Updated: 2021/02/02 19:28:40 by bswag            ###   ########.fr        #
+#    Updated: 2021/02/03 14:25:55 by bswag            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,10 +36,10 @@ all: $(NAME)
 
 $(NAME): $(OBJS) $(LIB)
 	cp $(PATHLIB)libft.a ./$(NAME)
-	ar -rcs $(NAME) $(OBJS)	
+	ar -rcs $(NAME) $(OBJS)
 
 $(LIB):
-	$(MAKE) bonus -C $(PATHLIB)
+	$(MAKE) -C $(PATHLIB)
 
 %.o: %.c $(DEPS)
 	$(CC) $(CFLAGS) -o $@ $<

@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 18:03:14 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/02 19:10:41 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/02 23:17:43 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,13 @@ void	ft_error(unsigned char er)
 	exit(1);
 }
 
-
-
 unsigned char	what_flag(char *s)
 {
 	int	len;
-
+	
+	
+	if (s == NULL)
+		return (P_EMPTY);
 	len = ft_strlen(s);
 	if (len > 2 || len < 1)
 		return (P_ERR);
@@ -131,7 +132,7 @@ void    parse_line(char *line, t_base *base, unsigned char *flags)
 void	parse_input(char *file, t_base *base)
 {
 	int				fd;
-	char			*line = NULL;
+	char			*line;
 	unsigned char	flags;
 	t_list			*head;
 	
@@ -147,14 +148,11 @@ void	parse_input(char *file, t_base *base)
 		else
 			ft_lstadd_back(&head, ft_lstnew(line));
 	}
-	if (flags == 255)
-	{
-		ft_lstadd_back(&head, ft_lstnew(line));
-		base->map = make_map(&head, ft_lstsize(head));
-	}
-	else
+	if (flags != 255)
 	{
 		free(line);
 		ft_error(ER_NOT_ENOUGH_INFO);
 	}
+	ft_lstadd_back(&head, ft_lstnew(line));
+	base->map = make_map(&head, ft_lstsize(head));
 }

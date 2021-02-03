@@ -6,7 +6,7 @@
 #    By: bswag <bswag@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/09 14:09:47 by bswag             #+#    #+#              #
-#    Updated: 2021/02/02 19:16:59 by bswag            ###   ########.fr        #
+#    Updated: 2021/02/03 13:53:30 by bswag            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,14 +71,11 @@ DEPS = libft.h
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	ar -rcs $(NAME) $(OBJS)
+$(NAME): $(OBJS) $(OBJSBNS)
+	ar -rcs $(NAME) $(OBJS) $(OBJSBNS)
 
 %.o: %.c $(DEPS)
 	$(CC) $(CFLAGS) -c -o $@ $<
-
-bonus: $(NAME) $(OBJSBNS)
-	ar -rs $(NAME) $(OBJSBNS)
 
 clean:
 	/bin/rm -f $(OBJS) $(OBJSBNS)
