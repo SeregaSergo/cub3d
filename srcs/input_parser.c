@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 18:03:14 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/03 23:49:25 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/04 22:00:33 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,16 +132,21 @@ void    parse_line(char *line, t_base *base, unsigned char *flags)
 
 void	put_param_plr(t_base *base, int i, int j)
 {
+	t_plr	*ptr;
+
+	if (!(ptr = (t_plr *)malloc(sizeof(t_plr))))
+		ft_error(ER_MEMMORY_LACK);
+	base->plr = ptr;
 	if (base->map[i][j] == 'W')
-		base->dir = M_PI;
+		base->plr->dir = M_PI;
 	else if (base->map[i][j] == 'N')
-		base->dir = M_PI + M_PI_2;
+		base->plr->dir = M_PI + M_PI_2;
 	else if (base->map[i][j] == 'E')
-		base->dir = 0;
+		base->plr->dir = 0;
 	else if (base->map[i][j] == 'S')
-		base->dir = M_PI_2;
-	base->plr_x = j * SCALE;
-	base->plr_y = i * SCALE;
+		base->plr->dir = M_PI_2;
+	base->plr->x = j * SCALE;
+	base->plr->y = i * SCALE;
 }
 
 void	initialize_plr(t_base *base)
@@ -150,6 +155,7 @@ void	initialize_plr(t_base *base)
 	int	j;
 
 	i = 0;
+	base->key_flags = 0;
 	while (base->map[i])
 	{
 		j = 0;

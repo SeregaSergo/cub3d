@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 19:10:12 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/03 19:14:31 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/04 21:58:18 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,17 +114,6 @@ int		find_max_width_len(t_list *lst)
 	}
 	return (max_len);
 }
-/*
-void	print_lst(t_list *lst)
-{
-	while (lst)
-	{
-		ft_printf("%s\n", lst->content);
-		lst = lst->next;
-	}
-	ft_printf("\n\n");
-}
-*/
 
 void	formating_map(t_list **head)
 {

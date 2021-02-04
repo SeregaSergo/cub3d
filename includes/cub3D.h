@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 19:22:40 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/04 01:11:29 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/04 23:28:42 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,42 +42,51 @@
 # define P_C   	    	0b10000000
 # define P_ERR          0b11111110
 
+# define KF_W			0b00000001
+# define KF_S			0b00000010
+# define KF_A			0b00000100
+# define KF_D			0b00001000
+# define KF_RIGHT		0b00010000
+# define KF_LEFT		0b00100000
+
 # define SCALE			15
 
-typedef struct  s_xpm {
-	void	*xpm;
-	int		width;
-	int		hight;
-}				t_xpm;
+typedef struct  	s_xpm {
+	void			*xpm;
+	int				width;
+	int				hight;
+}					t_xpm;
 
-typedef struct  s_base {
-	void		*mlx;
-	void		*win;
-	
-	void		*img;
-	char		*addr;
-	int			bpp;
-	int			line_length;
-	int			endian;
-	
-	int			hight;
-	int			width;
-	t_xpm		*NO;
-	t_xpm		*SO;
-	t_xpm		*WE;
-	t_xpm		*EA;
-	t_xpm		*S;
-	int			col_floor;
-	int			col_ceiling;
-	char		**map;
+typedef struct		s_plr
+{
+	float			x;
+	float			y;
+	float			dir;	
+}					t_plr;
 
-	float		plr_x;
-	float		plr_y;
-	float		dir;
+typedef struct  	s_base {
+	void			*mlx;
+	void			*win;
 	
-	int			x_mouse;
-	int			y_mouse;
-}				t_base;
+	void			*img;
+	char			*addr;
+	int				bpp;
+	int				line_length;
+	int				endian;
+	
+	int				hight;
+	int				width;
+	t_xpm			*NO;
+	t_xpm			*SO;
+	t_xpm			*WE;
+	t_xpm			*EA;
+	t_xpm			*S;
+	int				col_floor;
+	int				col_ceiling;
+	char			**map;
+	t_plr			*plr;
+	unsigned char	key_flags;
+}					t_base;
 
 void	parse_input(char *file, t_base *base);
 void	my_mlx_pixel_put(t_base *base, int x, int y, int color);
@@ -90,5 +99,13 @@ void	free_arr_str(char **list);
 void	ft_error(unsigned char er);
 int		ft_arrlen(char **str);
 char	**make_map(t_list **head, int size);
+int		render_next_frame(t_base *base);
+int		key_press_hook(int keycode, t_base *base);
+int		key_release_hook(int keycode, t_base *base);
+void	ft_cast_rays(t_base *base);
+void	ft_print_map(t_base *base, char **map);
+void	scaled_pixel_put(t_base *base, int x, int y, int col);
+void	change_xy_plr(t_base *base, float angle);
+void	ft_change_pos_plr(t_base *base, unsigned char flags);
 
 #endif
