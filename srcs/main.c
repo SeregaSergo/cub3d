@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 19:16:33 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/05 16:13:46 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/05 22:02:36 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	change_xy_plr(t_base *base, float angle)
 	p = base->plr;
 	dx = p->x + cos(p->dir + angle);
 	dy = p->y + sin(p->dir + angle);
-	if (base->map[(int)(base->plr->y / SCALE)][(int)(dx / SCALE)] != '1')
+	if (base->map[(int)(base->plr->y / base->map_scale)][(int)(dx / base->map_scale)] != '1')
 		base->plr->x = dx;
-	if (base->map[(int)(dy / SCALE)][(int)(base->plr->x / SCALE)] != '1')
+	if (base->map[(int)(dy / base->map_scale)][(int)(base->plr->x / base->map_scale)] != '1')
 		base->plr->y = dy;
 }
 
@@ -66,15 +66,15 @@ void	scaled_pixel_put(t_base *base, int x, int y, int col)
 	int	end_x;
 	int	end_y;
 	
-	end_x = x + SCALE;
-	end_y = y + SCALE;
+	end_x = x + base->map_scale;
+	end_y = y + base->map_scale;
 	sc_x = x;
 	while (sc_x < end_x)
 	{
 		sc_y = y;
 		while (sc_y < end_y)
 		{
-			my_mlx_pixel_put(base, sc_x, sc_y, col);
+			my_mlx_pixel_put(base->min_map, sc_x, sc_y, col);
 			sc_y++;
 		}
 		sc_x++;
@@ -94,28 +94,35 @@ void	ft_print_map(t_base *base, char **map)
 		while (map[i][j])
 		{
 			color = what_color(map[i][j]);
-			scaled_pixel_put(base, j * SCALE, i * SCALE, color);
+			scaled_pixel_put(base, j * base->map_scale, i * base->map_scale, color);
 			j++;
 		}
 		i++;
 	}
 }
 
-///*
+void	print_img(t_img *image, char *s)
+{
+	printf("%s\n", s);
+	printf("Img %p\nAddres %p\nBPP = %i\nLL = %i\nendian = %i\n\n", image->img, image->addr, image->bpp, image->line_length, image->endian);
+}
+
 void	print_base(t_base *base)
 {
 	int i = 0;
-	ft_printf("BPP = %i\nEndian = %i\nWidth = %i\nHight = %i\nColor of floor = %i\n", base->bpp, \
-	base->endian, base->width, base->hight, base->col_floor);
+	
+	printf("base.width = %i\nbase_hight = %i\n", base->width, base->hight);
 	printf("plr_x = %f\nplr_y = %f\ndir = %f\n", base->plr->x, base->plr->y, base->plr->dir);
-	printf("Line length %i\n", base->line_length);
+	print_img(base->scr, "SCR");
+	print_img(base->min_map, "MAP");
+	printf("map_scale %i\nmap_widht %i\nmap_hight %i\n", base->map_scale, base->map_width, base->map_hight);
 	while(base->map[i])
 	{
 		ft_printf("%s\n", base->map[i]);
 		i++;
 	}
 }
-//*/
+
 
 int     main(int argc, char **argv)
 {
@@ -124,13 +131,12 @@ int     main(int argc, char **argv)
 	if (argc != 2 || !argv[0])
 		ft_error(ER_ARG);
     base.mlx = mlx_init();
-	base.line_length = 0;
-	base.endian = 0;
-	base.bpp = 0;
 	parse_input(argv[1], &base);
    	base.win = mlx_new_window(base.mlx, base.width, base.hight, "Be glad or be dead!");
-	base.img = mlx_new_image(base.mlx, base.width, base.hight);
-	base.addr = mlx_get_data_addr(base.img, &base.bpp, &base.line_length, &base.endian);
+	base.scr->img = mlx_new_image(base.mlx, base.width, base.hight);
+	base.scr->addr = mlx_get_data_addr(base.scr->img, &base.scr->bpp, &base.scr->line_length, &base.scr->endian);
+	base.min_map->img = mlx_new_image(base.mlx, base.map_width, base.map_hight);
+	base.min_map->addr = mlx_get_data_addr(base.min_map->img, &base.min_map->bpp, &base.min_map->line_length, &base.min_map->endian);
 	print_base(&base);
 	mlx_hook(base.win, 2, 1L<<0, &key_press_hook, &base);
 	mlx_hook(base.win, 3, 1L<<1, &key_release_hook, &base);

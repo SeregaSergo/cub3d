@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 19:22:40 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/05 17:36:17 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/05 20:45:40 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@
 # define KF_RIGHT		0b00010000
 # define KF_LEFT		0b00100000
 
-# define SCALE			12
+# define SCALE			4
 
 typedef struct  	s_xpm {
 	void			*xpm;
@@ -64,15 +64,21 @@ typedef struct		s_plr
 	float			dir;	
 }					t_plr;
 
-typedef struct  	s_base {
-	void			*mlx;
-	void			*win;
-	
+typedef struct		s_img
+{
 	void			*img;
 	char			*addr;
 	int				bpp;
 	int				line_length;
 	int				endian;
+}					t_img;
+
+typedef struct  	s_base {
+	void			*mlx;
+	void			*win;
+	
+	t_img			*scr;
+	t_img			*min_map;
 	
 	int				hight;
 	int				width;
@@ -84,12 +90,16 @@ typedef struct  	s_base {
 	int				col_floor;
 	int				col_ceiling;
 	char			**map;
+	int				map_scale;
+	int				map_width;
+	int				map_hight;
+	
 	t_plr			*plr;
 	unsigned char	key_flags;
 }					t_base;
 
 void	parse_input(char *file, t_base *base);
-void	my_mlx_pixel_put(t_base *base, int x, int y, int color);
+void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 int		process_color_FC(unsigned char flag, char *str, t_base *base);
 int		process_xpm(unsigned char flag, char *file, t_base *base);
 int		process_R(char *wdth, char *hght, t_base *base);

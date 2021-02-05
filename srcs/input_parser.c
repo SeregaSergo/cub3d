@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 18:03:14 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/04 22:00:33 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/05 22:02:55 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,8 +145,8 @@ void	put_param_plr(t_base *base, int i, int j)
 		base->plr->dir = 0;
 	else if (base->map[i][j] == 'S')
 		base->plr->dir = M_PI_2;
-	base->plr->x = j * SCALE;
-	base->plr->y = i * SCALE;
+	base->plr->x = j * base->map_scale;
+	base->plr->y = i * base->map_scale;
 }
 
 void	initialize_plr(t_base *base)
@@ -170,6 +170,29 @@ void	initialize_plr(t_base *base)
 		}
 		i++;
 	}
+}
+
+void	calc_map_scale(t_base *base)
+{
+	int	map_wdth;
+	int	map_hght;
+	
+	map_wdth = (int)(base->width / (ft_strlen(base->map[0])) / SCALE);
+	map_hght = (int)((base->hight / ft_arrlen(base->map)) / SCALE);
+	if (map_wdth < map_hght)
+		base->map_scale = map_wdth;
+	else
+		base->map_scale = map_hght;
+	base->map_width = base->map_scale * ft_strlen(base->map[0]);
+	base->map_hight = base->map_scale * ft_arrlen(base->map);
+}
+
+void	init_struct_images(t_base *base)
+{
+	if (!(base->scr = (t_img *)malloc(sizeof(t_img))))
+		ft_error(ER_MEMMORY_LACK);
+	if (!(base->min_map = (t_img *)malloc(sizeof(t_img))))
+		ft_error(ER_MEMMORY_LACK);
 }
 
 void	parse_input(char *file, t_base *base)
@@ -198,5 +221,7 @@ void	parse_input(char *file, t_base *base)
 	}
 	ft_lstadd_back(&head, ft_lstnew(line));
 	base->map = make_map(&head, ft_lstsize(head));
+	calc_map_scale(base);
 	initialize_plr(base);
+	init_struct_images(base);
 }

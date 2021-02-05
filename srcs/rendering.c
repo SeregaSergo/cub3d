@@ -6,17 +6,17 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 21:49:22 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/05 19:38:24 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/05 22:17:32 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-void	my_mlx_pixel_put(t_base *base, int x, int y, int color)
+void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
     char	*dst;
 
-    dst = base->addr + (y * base->line_length + x * (base->bpp / 8));
+    dst = img->addr + (y * img->line_length + x * (img->bpp / 8));
     *(unsigned int*)dst = color;
 }
 
@@ -43,7 +43,7 @@ void	print_screen_line(t_base *base, float dest, int x)
 			col = 0x00FF0000;
 		else
 			col = 0x00000000;
-		my_mlx_pixel_put(base, x, y, col);
+		my_mlx_pixel_put(base->scr, x, y, col);
 		y++;
 	}
 }
@@ -63,11 +63,11 @@ void	ft_cast_rays(t_base *base)
 	{
 		ray.x = base->plr->x; // каждый раз возвращаемся в точку начала
 		ray.y = base->plr->y;
-		while (base->map[(int)(ray.y / SCALE)][(int)(ray.x / SCALE)] != '1')
+		while (base->map[(int)(ray.y / base->map_scale)][(int)(ray.x / base->map_scale)] != '1')
 		{
 			ray.x += cos(start);
 			ray.y += sin(start);
-			my_mlx_pixel_put(base, ray.x, ray.y, 0x00008080);
+			my_mlx_pixel_put(base->min_map, (int)ray.x, (int)ray.y, 0x00008080);
 		}
 		print_screen_line(base, ft_segmentlen(base->plr->x, base->plr->y, ray.x, ray.y) * cos(start), i);
 		start += (M_PI / 3) / base->width;
