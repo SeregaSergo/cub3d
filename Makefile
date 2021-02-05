@@ -28,7 +28,7 @@ $(MLX):
 $(LIB):
 	$(MAKE) -C $(PATHLIB)
 
-%.o: %.c
+%.o: %.c ./includes/cub3D.h
 	$(CC) -c $(CFLAGS) -I$(INC) -o $@ $<
 
 bonus: all

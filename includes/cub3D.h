@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 19:22:40 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/04 23:28:42 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/05 17:36:17 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@
 # define KF_RIGHT		0b00010000
 # define KF_LEFT		0b00100000
 
-# define SCALE			15
+# define SCALE			12
 
 typedef struct  	s_xpm {
 	void			*xpm;
@@ -107,5 +107,6 @@ void	ft_print_map(t_base *base, char **map);
 void	scaled_pixel_put(t_base *base, int x, int y, int col);
 void	change_xy_plr(t_base *base, float angle);
 void	ft_change_pos_plr(t_base *base, unsigned char flags);
+int		destroy_win(void);
 
 #endif

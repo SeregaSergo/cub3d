@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 21:50:44 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/04 23:28:05 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/05 19:41:38 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,16 @@ int	key_release_hook(int keycode, t_base *base)
 	return (0);
 }
 
+int	destroy_win(void)
+{
+	exit(0);
+}
+
 int	render_next_frame(t_base *base)
 {
-	ft_print_map(base, base->map);
 	ft_change_pos_plr(base, base->key_flags);
 	ft_cast_rays(base);
+	ft_print_map(base, base->map);
 	mlx_put_image_to_window(base->mlx, base->win, base->img, 0, 0);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 19:16:33 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/04 23:28:20 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/05 16:13:46 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	ft_change_pos_plr(t_base *base, unsigned char flags)
 		base->plr->dir -= 0.1;
 	if (flags & KF_RIGHT)
 		base->plr->dir += 0.1;
+	base->plr->dir > 2 * M_PI ? base->plr->dir -= 2 * M_PI : 0;
+	base->plr->dir < 0 ? base->plr->dir += 2 * M_PI : 0;
 }
 
 
@@ -132,6 +134,7 @@ int     main(int argc, char **argv)
 	print_base(&base);
 	mlx_hook(base.win, 2, 1L<<0, &key_press_hook, &base);
 	mlx_hook(base.win, 3, 1L<<1, &key_release_hook, &base);
+	mlx_hook(base.win, 17, 1L<<17, &destroy_win, &base);
 	mlx_loop_hook(base.mlx, render_next_frame, &base);
 	mlx_loop(base.mlx);
 	return (0);
