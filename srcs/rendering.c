@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 21:49:22 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/06 12:15:56 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/06 14:02:39 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,12 @@ void	print_screen_line(t_base *base, float dest, int x)
 	wall_e > base->hight ? wall_e = base->hight : 0;
 	while (y < base->hight)
 	{
-		if (y > wall_s && y < wall_e)
-			col = 0x00FF0000;
+		if (y > wall_e)
+			col = base->col_floor;
+		else if (y < wall_s)
+			col = base->col_ceiling;
 		else
-			col = 0x00000000;
+			col = 0x00FF33FF;
 		my_mlx_pixel_put(base->scr, x, y, col);
 		y++;
 	}
@@ -63,7 +65,7 @@ void	ft_cast_rays(t_base *base)
 	{
 		ray.x = base->plr->x; // каждый раз возвращаемся в точку начала
 		ray.y = base->plr->y;
-		while (base->map[(int)(ray.y / SCALE)][(int)(ray.x / SCALE)] != '1')
+		while (base->map[(int)ray.y >> OFFSET][(int)ray.x >> OFFSET] != '1')
 		{
 			ray.x += cos(start);
 			ray.y += sin(start);

@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 19:22:40 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/06 12:20:19 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/06 12:24:59 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@
 # define KF_LEFT		0b00100000
 
 # define SCALE			64
+# define OFFSET			6
 # define MAP_SIZE		4
 # define VELOCITY		3
 

@@ -1,4 +1,4 @@
-R 1280 720
+R 1920 1080
 NO ./textures/winter.xpm
 SO ./textures/summer.xpm
 WE ./textures/autumn.xpm
@@ -6,8 +6,8 @@ WE ./textures/autumn.xpm
 EA ./textures/spring.xpm
 
 S   ./textures/tree.xpm
-F 220,100,0
-C 225,30,0
+F 0,102,0
+C 204,229,255
 
 
         1111111111111111111111111
