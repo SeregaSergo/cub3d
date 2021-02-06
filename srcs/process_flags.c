@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 17:46:28 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/02 21:32:37 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/06 20:09:40 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,14 @@ int process_xpm(unsigned char flag, char *file, t_base *base)
     
     if (!(ptr = (t_xpm *)ft_calloc(1, sizeof(t_xpm))))
         return (1);
-    if (!(ptr->xpm = mlx_xpm_file_to_image(base->mlx, file, &ptr->width, &ptr->hight)))
+    if (!(ptr->img = (t_img *)ft_calloc(1, sizeof(t_img))))
+        return (1);
+    if (!(ptr->img->img = mlx_xpm_file_to_image(base->mlx, file, &ptr->width, &ptr->hight)))
     {
         free(ptr);
         return (1);
     }
+    ptr->img->addr = mlx_get_data_addr(ptr->img->img, &ptr->img->bpp, &ptr->img->line_length, &ptr->img->endian);
     if (flag == P_NO)
         base->NO = ptr;
     else if (flag == P_SO)

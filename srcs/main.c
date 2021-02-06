@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 19:16:33 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/06 12:12:39 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/06 22:16:52 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,13 +116,13 @@ void	print_base(t_base *base)
 	print_img(base->scr, "SCR");
 	print_img(base->min_map, "MAP");
 	printf("map_scale %i\nmap_widht %i\nmap_hight %i\n", base->map_scale, base->map_width, base->map_hight);
+	printf("\nimg LL = %d\nwidth = %i\nhight = %i\n", base->WE->img->line_length, base->WE->width, base->WE->hight);
 	while(base->map[i])
 	{
 		ft_printf("%s\n", base->map[i]);
 		i++;
 	}
 }
-
 
 int     main(int argc, char **argv)
 {
@@ -135,7 +135,7 @@ int     main(int argc, char **argv)
    	base.win = mlx_new_window(base.mlx, base.width, base.hight, "Be glad or be dead!");
 	base.scr->img = mlx_new_image(base.mlx, base.width, base.hight);
 	base.scr->addr = mlx_get_data_addr(base.scr->img, &base.scr->bpp, &base.scr->line_length, &base.scr->endian);
-	base.min_map->img = mlx_new_image(base.mlx, base.map_width, base.map_hight);
+	base.min_map->img = mlx_new_image(base.mlx, base.map_width * base.map_scale, base.map_hight * base.map_scale);
 	base.min_map->addr = mlx_get_data_addr(base.min_map->img, &base.min_map->bpp, &base.min_map->line_length, &base.min_map->endian);
 	print_base(&base);
 	mlx_hook(base.win, 2, 1L<<0, &key_press_hook, &base);

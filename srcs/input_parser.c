@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 18:03:14 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/06 12:09:46 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/06 22:12:58 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,8 +183,8 @@ void	calc_map_scale(t_base *base)
 		base->map_scale = map_wdth;
 	else
 		base->map_scale = map_hght;
-	base->map_width = base->map_scale * ft_strlen(base->map[0]);
-	base->map_hight = base->map_scale * ft_arrlen(base->map);
+	base->map_width = ft_strlen(base->map[0]);
+	base->map_hight = ft_arrlen(base->map);
 }
 
 void	init_struct_images(t_base *base)

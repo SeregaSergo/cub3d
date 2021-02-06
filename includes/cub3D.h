@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 19:22:40 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/06 12:24:59 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/06 22:15:54 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,17 @@
 # define MAP_SIZE		4
 # define VELOCITY		3
 
+typedef struct		s_img
+{
+	void			*img;
+	char			*addr;
+	int				bpp;
+	int				line_length;
+	int				endian;
+}					t_img;
+
 typedef struct  	s_xpm {
-	void			*xpm;
+	t_img			*img;
 	int				width;
 	int				hight;
 }					t_xpm;
@@ -67,15 +76,14 @@ typedef struct		s_plr
 	float			dir;	
 }					t_plr;
 
-typedef struct		s_img
+/*
+typedef struct		s_hit
 {
-	void			*img;
-	char			*addr;
-	int				bpp;
-	int				line_length;
-	int				endian;
-}					t_img;
-
+	float			dst;
+	t_xpm			*xpm;
+	float			offset;
+}					t_hit;
+*/
 typedef struct  	s_base {
 	void			*mlx;
 	void			*win;
