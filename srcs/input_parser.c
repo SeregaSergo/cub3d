@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 18:03:14 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/05 22:02:55 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/06 12:09:46 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,8 +145,8 @@ void	put_param_plr(t_base *base, int i, int j)
 		base->plr->dir = 0;
 	else if (base->map[i][j] == 'S')
 		base->plr->dir = M_PI_2;
-	base->plr->x = j * base->map_scale;
-	base->plr->y = i * base->map_scale;
+	base->plr->x = j * SCALE;
+	base->plr->y = i * SCALE;
 }
 
 void	initialize_plr(t_base *base)
@@ -177,8 +177,8 @@ void	calc_map_scale(t_base *base)
 	int	map_wdth;
 	int	map_hght;
 	
-	map_wdth = (int)(base->width / (ft_strlen(base->map[0])) / SCALE);
-	map_hght = (int)((base->hight / ft_arrlen(base->map)) / SCALE);
+	map_wdth = (int)(base->width / (ft_strlen(base->map[0])) / MAP_SIZE);
+	map_hght = (int)((base->hight / ft_arrlen(base->map)) / MAP_SIZE);
 	if (map_wdth < map_hght)
 		base->map_scale = map_wdth;
 	else

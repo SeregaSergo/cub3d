@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 19:16:33 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/05 22:02:36 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/06 12:12:39 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void	change_xy_plr(t_base *base, float angle)
 	float	dy;
 
 	p = base->plr;
-	dx = p->x + cos(p->dir + angle);
-	dy = p->y + sin(p->dir + angle);
-	if (base->map[(int)(base->plr->y / base->map_scale)][(int)(dx / base->map_scale)] != '1')
+	dx = p->x + VELOCITY * cos(p->dir + angle);
+	dy = p->y + VELOCITY * sin(p->dir + angle);
+	if (base->map[(int)(base->plr->y / SCALE)][(int)(dx / SCALE)] != '1')
 		base->plr->x = dx;
-	if (base->map[(int)(dy / base->map_scale)][(int)(base->plr->x / base->map_scale)] != '1')
+	if (base->map[(int)(dy / SCALE)][(int)(base->plr->x / SCALE)] != '1')
 		base->plr->y = dy;
 }
 
