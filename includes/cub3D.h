@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 19:22:40 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/06 22:15:54 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/07 17:19:14 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,14 +76,13 @@ typedef struct		s_plr
 	float			dir;	
 }					t_plr;
 
-/*
 typedef struct		s_hit
 {
 	float			dst;
 	t_xpm			*xpm;
 	float			offset;
 }					t_hit;
-*/
+
 typedef struct  	s_base {
 	void			*mlx;
 	void			*win;
@@ -123,7 +122,8 @@ char	**make_map(t_list **head, int size);
 int		render_next_frame(t_base *base);
 int		key_press_hook(int keycode, t_base *base);
 int		key_release_hook(int keycode, t_base *base);
-void	ft_cast_rays(t_base *base);
+void	ft_cast_rays_1(t_base *base);
+void	ft_cast_rays_2(t_base *base);
 void	ft_print_map(t_base *base, char **map);
 void	scaled_pixel_put(t_base *base, int x, int y, int col);
 void	change_xy_plr(t_base *base, float angle);

@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 21:50:44 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/05 22:20:08 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/07 17:46:54 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ int	render_next_frame(t_base *base)
 {
 	ft_change_pos_plr(base, base->key_flags);
 	ft_print_map(base, base->map);
-	ft_cast_rays(base);
+	// ft_cast_rays_1(base);
+	ft_cast_rays_2(base);
 	mlx_put_image_to_window(base->mlx, base->win, base->scr->img, 0, 0);
 	mlx_put_image_to_window(base->mlx, base->win, base->min_map->img, 0, 0);
 	return (0);
