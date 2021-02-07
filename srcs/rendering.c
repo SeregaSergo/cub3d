@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 21:49:22 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/07 18:01:29 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/07 18:07:55 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,18 +118,16 @@ int		ft_is_in_map_range(float x, float y, t_base *base)
 	int	i;
 	int	j;
 	
-	i = (int)(y / SCALE);
-	j = (int)(x / SCALE);
-	if (j > (base->map_width - 1) || i > (base->map_hight - 1))
-		return (0);
-	if (j < 1 || i < 1)
+	i = ((int)y >> OFFSET) + 1;
+	j = ((int)x >> OFFSET) + 1;
+	if (j > base->map_width || i > base->map_hight || j < 2 || i < 2)
 		return (0);
 	return (1);
 }
 
 int		ft_is_wall(float x, float y, t_base *base)
 {
-	if (base->map[(int)(y / SCALE)][(int)(x / SCALE)] == '1')
+	if (base->map[(int)y >> OFFSET][(int)x >> OFFSET] == '1')
 		return (1);
 	else
 		return (0);
