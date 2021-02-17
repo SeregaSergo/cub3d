@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 21:49:22 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/17 16:36:22 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/17 19:06:52 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,25 +82,27 @@ int		find_horizontal_point(t_base *base, t_hit *pnt, t_plr *ray)
 	float	yo;
 	float	rx;
 	float	ry;
+	float	spin;
 	
 	rx = ray->x;
 	ry = ray->y;
 	pnt->dst = 10000 * SCALE;
+	spin = -1 / tan(ray->dir);
 	if (ray->dir > M_PI) //looking up
 		{
-			ry = (int)(ry / SCALE) * SCALE - 0.0001;
-			rx = (ray->y - ry) * (-1 / tan(ray->dir)) + ray->x;
+			ry = ((int)ry >> OFFSET << OFFSET) - 0.0001;
+			rx = (ray->y - ry) * spin + ray->x;
 			yo = -SCALE;
-			xo = -yo * (-1 / tan(ray->dir));
+			xo = -yo * spin;
 		}
 	else if (ray->dir < M_PI) //looking down
 		{
-			ry = (int)(ry / SCALE) * SCALE + SCALE;
-			rx = (ray->y - ry) * (-1 / tan(ray->dir)) + ray->x;
+			ry = ((int)ry >> OFFSET << OFFSET) + SCALE;
+			rx = (ray->y - ry) * spin + ray->x;
 			yo = SCALE;
-			xo = -yo * (-1 / tan(ray->dir));
+			xo = -yo * spin;
 		}
-	if (ray->dir == 0 || ray->dir == M_PI)
+	else
 		return (0);
 	while (ft_is_in_map_range(rx, ry, base))
 	{
@@ -108,9 +110,9 @@ int		find_horizontal_point(t_base *base, t_hit *pnt, t_plr *ray)
 		{
 			pnt->dst = ft_distance(ray->x, ray->y, rx, ry);
 			if (yo == -SCALE)
-				pnt->offset =  (rx - (int)(rx / SCALE) * SCALE) / SCALE;
+				pnt->offset =  (rx - ((int)rx >> OFFSET << OFFSET)) / SCALE;
 			else
-				pnt->offset =  1 - (rx - (int)(rx / SCALE) * SCALE) / SCALE;
+				pnt->offset =  1 - (rx - ((int)rx >> OFFSET << OFFSET)) / SCALE;
 			return (1);
 		}
 		rx += xo;
@@ -125,24 +127,26 @@ int		find_vertical_point(t_base *base, t_hit *pnt, t_plr *ray)
 	float	yo;
 	float	rx;
 	float	ry;
+	float	spin;
 	
 	rx = ray->x;
 	ry = ray->y;
+	spin = -tan(ray->dir);
 	if (ray->dir > M_PI_2 && ray->dir < 3 * M_PI_2) //looking left
 		{
-			rx = (int)(rx / SCALE) * SCALE - 0.0001;
-			ry = (ray->x - rx) * (-tan(ray->dir)) + ray->y;
+			rx = ((int)rx >> OFFSET << OFFSET) - 0.0001;
+			ry = (ray->x - rx) * spin + ray->y;
 			xo = -SCALE;
-			yo = -xo * (-tan(ray->dir));
+			yo = -xo * spin;
 		}
 	else if (ray->dir < M_PI_2 || ray->dir > (3 * M_PI_2)) //looking right
 		{
-			rx = (int)(rx / SCALE) * SCALE + SCALE;
-			ry = ((ray->x - rx) * (-1 * tan(ray->dir)) + ray->y);
+			rx = ((int)rx >> OFFSET << OFFSET) + SCALE;
+			ry = ((ray->x - rx) * spin + ray->y);
 			xo = SCALE;
-			yo = -xo * (-tan(ray->dir));
+			yo = -xo * spin;
 		}
-	if (ray->dir == M_PI_2 || ray->dir == 3 * M_PI_2)
+	else
 		return (0);
 	while (ft_is_in_map_range(rx, ry, base))
 	{
@@ -152,9 +156,9 @@ int		find_vertical_point(t_base *base, t_hit *pnt, t_plr *ray)
 			{
 				pnt->dst = ft_distance(ray->x, ray->y, rx, ry);
 				if (xo == -SCALE)
-					pnt->offset =  (ry - (int)(ry / SCALE) * SCALE) / SCALE;
+					pnt->offset =  (ry - ((int)ry >> OFFSET << OFFSET)) / SCALE;
 				else
-					pnt->offset =  1 - (ry - (int)(ry / SCALE) * SCALE) / SCALE;
+					pnt->offset =  1 - (ry - ((int)ry >> OFFSET << OFFSET)) / SCALE;
 				return (1);
 			}
 			return (0);
