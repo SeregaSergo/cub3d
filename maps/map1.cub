@@ -1,9 +1,8 @@
-R 1920 1080
-NO ./textures/winter.xpm
-SO ./textures/summer.xpm
-WE ./textures/autumn.xpm
-
-EA ./textures/spring.xpm
+R 1600 800
+NO ./textures/redbrick.xpm
+SO ./textures/north.xpm
+WE ./textures/wood.xpm
+EA ./textures/winter.xpm
 
 S   ./textures/tree.xpm
 F 0,102,0
