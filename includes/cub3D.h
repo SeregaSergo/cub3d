@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 19:22:40 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/17 15:14:32 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/17 16:57:05 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@
 # define SCALE			64
 # define OFFSET			6
 # define MAP_SIZE		4
-# define VELOCITY		2
+# define VELOCITY		3
 
 typedef struct		s_img
 {
@@ -114,25 +114,22 @@ typedef struct  	s_base {
 	unsigned char	key_flags;
 }					t_base;
 
-void	parse_input(char *file, t_base *base);
+void	ft_initialize_input(char *file, t_base *base);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
-int		process_color_FC(unsigned char flag, char *str, t_base *base);
-int		process_xpm(unsigned char flag, char *file, t_base *base);
-int		process_R(char *wdth, char *hght, t_base *base);
 int		ft_str_content(char *str, char *pattern);
 int		ft_char_in_set(char c, char *pattern);
 void	free_arr_str(char **list);
 void	ft_error(unsigned char er);
 int		ft_arrlen(char **str);
+void	process_flag(unsigned char flag, char **lst, t_base *base);
 char	**make_map(t_list **head, int size);
 int		render_next_frame(t_base *base);
 int		key_press_hook(int keycode, t_base *base);
 int		key_release_hook(int keycode, t_base *base);
 void	ft_cast_rays(t_base *base);
 void	ft_print_map(t_base *base, char **map);
-void	scaled_pixel_put(t_base *base, int x, int y, int col);
-void	change_xy_plr(t_base *base, float angle, float k);
 void	ft_change_pos_plr(t_base *base, unsigned char flags);
 int		destroy_win(void);
+void	parse_line(char *line, t_base *base, unsigned char *flags);
 
 #endif

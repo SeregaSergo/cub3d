@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 21:49:22 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/17 15:14:18 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/17 16:36:22 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		my_mlx_pixel_get(t_img *img, int x, int y)
     return (*(unsigned int*)dst);
 }
 
-float	ft_segmentlen(float x1, float y1, float x2, float y2)
+float	ft_distance(float x1, float y1, float x2, float y2)
 {
 	return (sqrt(pow((x1 - x2), 2) + pow((y1 - y2), 2)));
 }
@@ -43,8 +43,6 @@ void	print_screen_line(t_base *base, t_hit *point, int x)
 	y = 0;
 	wall_s = base->hight / 2 - SCALE * (base->hight / point->dst);
 	wall_e = base->hight / 2 + SCALE * (base->hight / point->dst);
-	// wall_s < 0 ? wall_s = 0 : 0;
-	// wall_e > base->hight ? wall_e = base->hight : 0;
 	while (y < base->hight)
 	{
 		if (y > wall_e)
@@ -108,7 +106,7 @@ int		find_horizontal_point(t_base *base, t_hit *pnt, t_plr *ray)
 	{
 		if (ft_is_wall(rx, ry, base))
 		{
-			pnt->dst = ft_segmentlen(ray->x, ray->y, rx, ry);
+			pnt->dst = ft_distance(ray->x, ray->y, rx, ry);
 			if (yo == -SCALE)
 				pnt->offset =  (rx - (int)(rx / SCALE) * SCALE) / SCALE;
 			else
@@ -150,9 +148,9 @@ int		find_vertical_point(t_base *base, t_hit *pnt, t_plr *ray)
 	{
 		if (ft_is_wall(rx, ry, base))
 		{
-			if (pnt->dst > ft_segmentlen(ray->x, ray->y, rx, ry))
+			if (pnt->dst > ft_distance(ray->x, ray->y, rx, ry))
 			{
-				pnt->dst = ft_segmentlen(ray->x, ray->y, rx, ry);
+				pnt->dst = ft_distance(ray->x, ray->y, rx, ry);
 				if (xo == -SCALE)
 					pnt->offset =  (ry - (int)(ry / SCALE) * SCALE) / SCALE;
 				else

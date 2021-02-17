@@ -6,12 +6,15 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 19:10:12 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/04 21:58:18 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/17 17:02:54 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
+/*
+** Fills n symbols of the string with given char
+*/
 void	ft_bchar(void *s, int n, char c)
 {
 	char	*ptr;
@@ -27,6 +30,9 @@ void	ft_bchar(void *s, int n, char c)
 	ptr[n] = '\0';
 }
 
+/*
+** Allocates (count) objects of size (size) and fills it with given char
+*/
 void	*ft_charalloc(size_t count, int size, char c)
 {
 	void	*ptr;
@@ -37,18 +43,6 @@ void	*ft_charalloc(size_t count, int size, char c)
 		return (NULL);
 	ft_bchar(ptr, total_size, c);
 	return (ptr);
-}
-
-void	ft_free_map(char **map)
-{
-	int i;
-	
-	i = 0;
-	while (map[i])
-	{
-		free(map[i]);
-		i++;
-	}
 }
 
 void	ft_free_lst(t_list **lst)

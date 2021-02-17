@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 17:46:28 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/06 20:09:40 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/17 16:47:43 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,27 @@ int process_color_FC(unsigned char flag, char *str, t_base *base)
         base->col_floor = result;
     free_arr_str(list);     
     return (0);
+}
+
+void	process_flag(unsigned char flag, char **lst, t_base *base)
+{
+	int	len;
+	int	res;
+
+	res = 0;
+	len = ft_arrlen(lst);
+	if (flag == P_EMPTY);
+	else if (flag == P_R && len == 3)
+		res = process_R(lst[1], lst [2], base);
+	else if (flag > P_R && flag < P_F && len == 2)
+		res = process_xpm(flag, lst[1], base);
+	else if ((flag == P_F || flag == P_C) && len == 2)
+		res = process_color_FC(flag, lst[1], base);
+	else
+		ft_error(ER_WRONG_PARAM);
+	if (res)
+	{
+		free_arr_str(lst);
+		ft_error(ER_WRONG_PARAM);
+	}
 }

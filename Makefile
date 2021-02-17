@@ -1,10 +1,14 @@
 NAME =	cub3D
 SRCS =	./srcs/main.c \
+		./srcs/initializer.c \
 		./srcs/input_parser.c \
 		./srcs/process_flags.c \
 		./srcs/make_map.c \
 		./srcs/rendering.c \
-		./srcs/hooks.c
+		./srcs/hooks.c \
+		./srcs/map_rendering.c \
+		./srcs/player_moving.c \
+		./srcs/utility_func.c
 OBJS = $(SRCS:%.c=%.o)
 LIB = libcub.a
 MLX = libmlx.a

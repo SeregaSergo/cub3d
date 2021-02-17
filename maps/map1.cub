@@ -5,7 +5,7 @@ WE ./textures/wood.xpm
 EA ./textures/winter.xpm
 
 S   ./textures/tree.xpm
-F 0,102,0
+F 80,137,66
 C 204,229,255
 
 
