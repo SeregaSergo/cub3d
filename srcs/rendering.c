@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 21:49:22 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/17 19:06:52 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/18 14:35:52 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,161 +56,157 @@ void	print_screen_line(t_base *base, t_hit *point, int x)
 	}
 }
 
-int		ft_is_in_map_range(float x, float y, t_base *base)
+int		ft_is_in_map_range(t_plr *pnt, t_base *base)
 {
 	int	i;
 	int	j;
 	
-	i = ((int)y >> OFFSET) + 1;
-	j = ((int)x >> OFFSET) + 1;
+	i = ((int)pnt->y >> OFFSET) + 1;
+	j = ((int)pnt->x >> OFFSET) + 1;
 	if (j > base->map_width || i > base->map_hight || j < 2 || i < 2)
 		return (0);
 	return (1);
 }
 
-int		ft_is_wall(float x, float y, t_base *base)
+int		ft_is_wall(t_plr *pnt, t_base *base, t_plr *ray)
 {
-	if (base->map[(int)y >> OFFSET][(int)x >> OFFSET] == '1')
+	char	cell;
+
+	cell = base->map[(int)pnt->y >> OFFSET][(int)pnt->x >> OFFSET];
+	if (cell == '1')
+	{
+		
 		return (1);
-	else
-		return (0);
+	}
+	else if (cell == '2')
+	{
+		
+	}
+	return (0);
 }
 
-int		find_horizontal_point(t_base *base, t_hit *pnt, t_plr *ray)
+int		find_horizontal_point(t_base *base, t_hit *pnts, t_plr *ray)
 {
 	float	xo;
 	float	yo;
-	float	rx;
-	float	ry;
+	t_plr	pnt;
 	float	spin;
 	
-	rx = ray->x;
-	ry = ray->y;
-	pnt->dst = 10000 * SCALE;
+	pnt = *ray;
 	spin = -1 / tan(ray->dir);
-	if (ray->dir > M_PI) //looking up
+	if (sin(ray->dir) < 0) //looking up
 		{
-			ry = ((int)ry >> OFFSET << OFFSET) - 0.0001;
-			rx = (ray->y - ry) * spin + ray->x;
+			pnt.y = ((int)pnt.y >> OFFSET << OFFSET) - 0.0001;
+			pnt.x = (ray->y - pnt.y) * spin + ray->x;
 			yo = -SCALE;
 			xo = -yo * spin;
 		}
-	else if (ray->dir < M_PI) //looking down
+	else if (sin(ray->dir) > 0) //looking down
 		{
-			ry = ((int)ry >> OFFSET << OFFSET) + SCALE;
-			rx = (ray->y - ry) * spin + ray->x;
+			pnt.y = ((int)pnt.y >> OFFSET << OFFSET) + SCALE;
+			pnt.x = (ray->y - pnt.y) * spin + ray->x;
 			yo = SCALE;
 			xo = -yo * spin;
 		}
 	else
 		return (0);
-	while (ft_is_in_map_range(rx, ry, base))
+	while (ft_is_in_map_range(&pnt, base))
 	{
-		if (ft_is_wall(rx, ry, base))
-		{
+		if (ft_is_wall(&pnt, base, ray))
+		/*{
 			pnt->dst = ft_distance(ray->x, ray->y, rx, ry);
 			if (yo == -SCALE)
 				pnt->offset =  (rx - ((int)rx >> OFFSET << OFFSET)) / SCALE;
 			else
-				pnt->offset =  1 - (rx - ((int)rx >> OFFSET << OFFSET)) / SCALE;
-			return (1);
-		}
-		rx += xo;
-		ry += yo; 
+				pnt->offset =  1 - (rx - ((int)rx >> OFFSET << OFFSET)) / SCALE; */
+			return (0);
+		pnt.x += xo;
+		pnt.y += yo; 
 	}
 	return (0);
 }
 
-int		find_vertical_point(t_base *base, t_hit *pnt, t_plr *ray)
+int		find_vertical_point(t_base *base, t_list **pnts, t_plr *ray)
 {
 	float	xo;
 	float	yo;
-	float	rx;
-	float	ry;
+	t_plr	pnt;
 	float	spin;
 	
-	rx = ray->x;
-	ry = ray->y;
+	pnt	= *ray;
 	spin = -tan(ray->dir);
-	if (ray->dir > M_PI_2 && ray->dir < 3 * M_PI_2) //looking left
+	if (cos(ray->dir) < 0) //looking left
 		{
-			rx = ((int)rx >> OFFSET << OFFSET) - 0.0001;
-			ry = (ray->x - rx) * spin + ray->y;
+			pnt.x = ((int)pnt.x >> OFFSET << OFFSET) - 0.0001;
+			pnt.y = (ray->x - pnt.x) * spin + ray->y;
 			xo = -SCALE;
 			yo = -xo * spin;
 		}
-	else if (ray->dir < M_PI_2 || ray->dir > (3 * M_PI_2)) //looking right
+	else if (cos(ray->dir) > 0) //looking right
 		{
-			rx = ((int)rx >> OFFSET << OFFSET) + SCALE;
-			ry = ((ray->x - rx) * spin + ray->y);
+			pnt.x= ((int)pnt.x >> OFFSET << OFFSET) + SCALE;
+			pnt.y = ((ray->x - pnt.x) * spin + ray->y);
 			xo = SCALE;
 			yo = -xo * spin;
 		}
 	else
 		return (0);
-	while (ft_is_in_map_range(rx, ry, base))
+	while (ft_is_in_map_range(&pnt, base))
 	{
-		if (ft_is_wall(rx, ry, base))
-		{
-			if (pnt->dst > ft_distance(ray->x, ray->y, rx, ry))
+		if (ft_is_wall(&pnt, base, ray))
+		/*	if (pnt->dst > ft_distance(ray->x, ray->y, rx, ry))
 			{
 				pnt->dst = ft_distance(ray->x, ray->y, rx, ry);
 				if (xo == -SCALE)
 					pnt->offset =  (ry - ((int)ry >> OFFSET << OFFSET)) / SCALE;
 				else
 					pnt->offset =  1 - (ry - ((int)ry >> OFFSET << OFFSET)) / SCALE;
-				return (1);
-			}
+				return (1); */
 			return (0);
-		}
-		rx += xo;
-		ry += yo; 		
+		pnt.x += xo;
+		pnt.y += yo; 		
 	}
 	return (0);
 }
 
-void	find_hit_point(t_hit *hit_point, t_base *base, t_plr *ray)
+void	find_hit_point(t_list **hit_points, t_base *base, t_plr *ray)
 {
-	if (ray->dir < 0)
-		ray->dir += 2 * M_PI;
-	else if (ray->dir > 2 * M_PI)
-		ray->dir -= 2 * M_PI;
-	find_horizontal_point(base, hit_point, ray);
-	if (find_vertical_point(base, hit_point, ray))
-		{
-			if (ray->dir > M_PI_2 && ray->dir < (M_PI + M_PI_2))
+	find_horizontal_points(base, hit_points, ray);
+	find_vertical_points(base, hit_points, ray);
+	/*	{
+			if (cos(ray->dir) < 0)
 				hit_point->xpm = base->EA;
 			else
 				hit_point->xpm = base->WE; 
 		}
 	else
 		{
-			if (ray->dir > M_PI)
+			if (sin(ray->dir) < 0)
 				hit_point->xpm = base->SO;
 			else
 				hit_point->xpm = base->NO;	
-		}
+		}*/
 }
 
 void	ft_cast_rays(t_base *base)
 {
 	t_plr	ray;
-	float	start;
 	float	end;
 	int		i;
-	t_hit	hit_point;
+	t_list	*hit_points;
 
 	ray = *base->plr;
-	start = ray.dir - (M_PI / 6); // начало веера лучей
   	end = ray.dir + (M_PI / 6); // край веера лучей
+	ray.dir -= (M_PI / 6); // начало веера лучей
 	i = 0;
-	while (start <= end)
+	while (ray.dir <= end)
 	{
-		ray.dir = start;
-		find_hit_point(&hit_point, base, &ray);
-		hit_point.dst *= cos(base->plr->dir - start);
-		print_screen_line(base, &hit_point, i);
-		start += (M_PI / 3) / base->width;
+		hit_points = NULL;
+		find_hit_point(&hit_points, base, &ray);
+		//hit_point.dst *= cos(base->plr->dir - ray.dir);
+		print_screen_line(base, &hit_points, i);
+		ft_lstclear(&hit_points, &free);
+		ray.dir += (M_PI / 3) / base->width;
 		i++;
 	}
 }
