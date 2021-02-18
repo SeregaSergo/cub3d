@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 19:22:40 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/18 17:04:27 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/18 23:03:17 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ typedef struct		s_point
 
 typedef struct		s_hit
 {
-	char			type;
+	float			dst;
 	int				wall_s;
 	int				wall_e;
 	t_xpm			*xpm;
