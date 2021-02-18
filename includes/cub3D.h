@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 19:22:40 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/18 13:54:48 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/18 17:04:27 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ typedef struct		s_hit
 	int				wall_s;
 	int				wall_e;
 	t_xpm			*xpm;
-	float			pix_x;
+	int				pix_x;
 }					t_hit;
 
 typedef struct  	s_base {
@@ -131,5 +131,7 @@ void	ft_print_map(t_base *base, char **map);
 void	ft_change_pos_plr(t_base *base, unsigned char flags);
 int		destroy_win(void);
 void	parse_line(char *line, t_base *base, unsigned char *flags);
+int		ft_is_in_map_range(t_plr *pnt, t_base *base);
+int		ft_is_wall(t_plr *pnt, t_list **pnts, t_base *base, t_plr *ray);
 
 #endif

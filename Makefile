@@ -8,7 +8,8 @@ SRCS =	./srcs/main.c \
 		./srcs/hooks.c \
 		./srcs/map_rendering.c \
 		./srcs/player_moving.c \
-		./srcs/utility_func.c
+		./srcs/utility_func.c \
+		.srcs/hits.c
 OBJS = $(SRCS:%.c=%.o)
 LIB = libcub.a
 MLX = libmlx.a

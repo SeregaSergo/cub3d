@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 21:49:22 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/18 14:35:52 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/18 15:32:53 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,6 @@ int		my_mlx_pixel_get(t_img *img, int x, int y)
 
     dst = img->addr + (y * img->line_length + x * (img->bpp / 8));
     return (*(unsigned int*)dst);
-}
-
-float	ft_distance(float x1, float y1, float x2, float y2)
-{
-	return (sqrt(pow((x1 - x2), 2) + pow((y1 - y2), 2)));
 }
 
 void	print_screen_line(t_base *base, t_hit *point, int x)
@@ -56,35 +51,6 @@ void	print_screen_line(t_base *base, t_hit *point, int x)
 	}
 }
 
-int		ft_is_in_map_range(t_plr *pnt, t_base *base)
-{
-	int	i;
-	int	j;
-	
-	i = ((int)pnt->y >> OFFSET) + 1;
-	j = ((int)pnt->x >> OFFSET) + 1;
-	if (j > base->map_width || i > base->map_hight || j < 2 || i < 2)
-		return (0);
-	return (1);
-}
-
-int		ft_is_wall(t_plr *pnt, t_base *base, t_plr *ray)
-{
-	char	cell;
-
-	cell = base->map[(int)pnt->y >> OFFSET][(int)pnt->x >> OFFSET];
-	if (cell == '1')
-	{
-		
-		return (1);
-	}
-	else if (cell == '2')
-	{
-		
-	}
-	return (0);
-}
-
 int		find_horizontal_point(t_base *base, t_hit *pnts, t_plr *ray)
 {
 	float	xo;
@@ -93,6 +59,7 @@ int		find_horizontal_point(t_base *base, t_hit *pnts, t_plr *ray)
 	float	spin;
 	
 	pnt = *ray;
+	pnt.dir = 100; // for horizonal points
 	spin = -1 / tan(ray->dir);
 	if (sin(ray->dir) < 0) //looking up
 		{
@@ -112,7 +79,7 @@ int		find_horizontal_point(t_base *base, t_hit *pnts, t_plr *ray)
 		return (0);
 	while (ft_is_in_map_range(&pnt, base))
 	{
-		if (ft_is_wall(&pnt, base, ray))
+		if (ft_is_wall(&pnt, pnts, base, ray))
 		/*{
 			pnt->dst = ft_distance(ray->x, ray->y, rx, ry);
 			if (yo == -SCALE)
@@ -153,7 +120,7 @@ int		find_vertical_point(t_base *base, t_list **pnts, t_plr *ray)
 		return (0);
 	while (ft_is_in_map_range(&pnt, base))
 	{
-		if (ft_is_wall(&pnt, base, ray))
+		if (ft_is_wall(&pnt, pnts, base, ray))
 		/*	if (pnt->dst > ft_distance(ray->x, ray->y, rx, ry))
 			{
 				pnt->dst = ft_distance(ray->x, ray->y, rx, ry);
