@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 21:50:44 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/17 15:14:23 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/19 17:31:43 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,21 @@ int	destroy_win(void)
 	exit(0);
 }
 
+double what_time_is_it()
+{
+    struct timespec now;
+    clock_gettime(CLOCK_REALTIME, &now);
+    return now.tv_sec + now.tv_nsec*1e-9;
+}
+
 int	render_next_frame(t_base *base)
 {
+	double time = what_time_is_it();
 	ft_change_pos_plr(base, base->key_flags);
 	ft_print_map(base, base->map);
 	ft_cast_rays(base);
 	mlx_put_image_to_window(base->mlx, base->win, base->scr->img, 0, 0);
 	mlx_put_image_to_window(base->mlx, base->win, base->min_map->img, 0, 0);
+    printf("time taken %.6lf\n", 1 / (what_time_is_it() - time));
 	return (0);
 }

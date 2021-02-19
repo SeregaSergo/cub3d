@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 21:49:22 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/18 23:14:49 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/19 17:30:53 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,12 +131,6 @@ int		find_vertical_points(t_base *base, t_list **pnts, t_plr *ray)
 	return (0);
 }
 
-void	find_hit_point(t_list **hit_points, t_base *base, t_plr *ray)
-{
-	find_horizontal_points(base, hit_points, ray);
-	find_vertical_points(base, hit_points, ray);
-}
-
 void	ft_cast_rays(t_base *base)
 {
 	t_plr	ray;
@@ -151,7 +145,8 @@ void	ft_cast_rays(t_base *base)
 	i = 0;
 	while (ray.dir <= end)
 	{
-		find_hit_point(&hit_points, base, &ray);
+		find_horizontal_points(base, &hit_points, &ray);
+		find_vertical_points(base, &hit_points, &ray);
 		print_screen_line(base, hit_points, i);
 		ft_lstclear(&hit_points, &free);
 		ray.dir += (M_PI / 3) / base->width;

@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:24:41 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/17 16:29:56 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/19 16:47:58 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ void	        ft_change_pos_plr(t_base *base, unsigned char flags)
 	if (flags & KF_D)
 		change_xy_plr(base, M_PI_2, k_vel);
 	if (flags & KF_LEFT)
-		base->plr->dir -= 0.03;
+		base->plr->dir -= 0.1;
 	if (flags & KF_RIGHT)
-		base->plr->dir += 0.03;
+		base->plr->dir += 0.1;
 	base->plr->dir > 2 * M_PI ? base->plr->dir -= 2 * M_PI : 0;
 	base->plr->dir < 0 ? base->plr->dir += 2 * M_PI : 0;
 }

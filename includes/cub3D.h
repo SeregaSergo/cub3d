@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 19:22:40 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/18 23:03:17 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/19 17:25:06 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 #include <sys/uio.h>
 #include <stdio.h>
 #include <math.h>
+#include <time.h>
 
 #define ER_ARG              2
 #define ER_READ             3
@@ -52,7 +53,7 @@
 # define SCALE			64
 # define OFFSET			6
 # define MAP_SIZE		4
-# define VELOCITY		7
+# define VELOCITY		14
 
 typedef struct		s_img
 {
