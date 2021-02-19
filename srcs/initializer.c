@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:42:52 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/17 16:53:03 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/19 22:20:44 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	put_param_plr(t_base *base, int i, int j)
 		base->plr->dir = 0;
 	else if (base->map[i][j] == 'S')
 		base->plr->dir = M_PI_2;
-	base->plr->x = j * SCALE;
-	base->plr->y = i * SCALE;
+	base->plr->x = j + 0.5;
+	base->plr->y = i + 0.5;
 }
 
 void	initialize_plr(t_base *base)
@@ -103,4 +103,5 @@ void	ft_initialize_input(char *file, t_base *base)
 	calc_map_scale(base);
 	initialize_plr(base);
 	init_struct_images(base);
+	g_velocity = 23 / (-160 * (float)(base->width * base->hight) / 4300000 + 160);
 }

@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 21:50:44 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/19 17:31:43 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/19 21:21:32 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,6 @@ int	render_next_frame(t_base *base)
 	ft_cast_rays(base);
 	mlx_put_image_to_window(base->mlx, base->win, base->scr->img, 0, 0);
 	mlx_put_image_to_window(base->mlx, base->win, base->min_map->img, 0, 0);
-    printf("time taken %.6lf\n", 1 / (what_time_is_it() - time));
+    printf("FPS %.0lf\n", 1 / (what_time_is_it() - time));
 	return (0);
 }

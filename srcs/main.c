@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 19:16:33 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/17 17:11:29 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/19 21:21:40 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int     main(int argc, char **argv)
 	base.min_map->img = mlx_new_image(base.mlx, base.map_width * base.map_scale, base.map_hight * base.map_scale);
 	base.min_map->addr = mlx_get_data_addr(base.min_map->img, &base.min_map->bpp, &base.min_map->line_length, &base.min_map->endian);
 	// print_base(&base);
+	// printf("width = %i\nhight = %i\n", base.width, base.hight);
 	mlx_hook(base.win, 2, 1L<<0, &key_press_hook, &base);
 	mlx_hook(base.win, 3, 1L<<1, &key_release_hook, &base);
 	mlx_hook(base.win, 17, 1L<<17, &destroy_win, &base);

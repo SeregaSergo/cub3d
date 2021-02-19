@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:14:05 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/18 23:13:06 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/19 21:08:21 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int		ft_is_in_map_range(t_plr *pnt, t_base *base)
 	int	i;
 	int	j;
 	
-	i = ((int)pnt->y >> OFFSET) + 1;
-	j = ((int)pnt->x >> OFFSET) + 1;
+	i = (int)pnt->y + 1;
+	j = (int)pnt->x + 1;
 	if (j > base->map_width || i > base->map_hight || j < 2 || i < 2)
 		return (0);
 	return (1);
@@ -35,20 +35,21 @@ t_hit	*ft_proc_wall(t_plr *pnt, t_base *base, t_plr *ray)
 
 	if (!(ptr = (t_hit *)malloc(sizeof(t_hit))))
 		ft_error(ER_MEMMORY_LACK);
-	ptr->dst = cos(base->plr->dir - ray->dir) * ft_distance(ray->x, ray->y, pnt->x, pnt->y);
-	ptr->wall_s = base->hight / 2 - SCALE * (base->hight / ptr->dst);
-	ptr->wall_e = base->hight / 2 + SCALE * (base->hight / ptr->dst);
+	// ptr->dst = cos(base->plr->dir - ray->dir) * ft_distance(ray->x, ray->y, pnt->x, pnt->y);
+	ptr->dst = cos(base->plr->dir - ray->dir) * sqrt(pow((ray->x - pnt->x), 2) + pow((ray->y - pnt->y), 2));
+	ptr->wall_s = base->hight / 2 - (base->hight / ptr->dst);
+	ptr->wall_e = base->hight / 2 + (base->hight / ptr->dst);
 	if (pnt->dir == 100) // horizontal point
 	{
 		if (sin(ray->dir) < 0)// looking up
 		{
 			ptr->xpm = base->SO;
-			ptr->pix_x = (int)(ptr->xpm->width * fmod(pnt->x, SCALE) / SCALE);
+			ptr->pix_x = (int)(ptr->xpm->width * fmod(pnt->x, 1));
 		}
 		else// looking down
 		{
 			ptr->xpm = base->NO;
-			ptr->pix_x = (int)(ptr->xpm->width * (1 - fmod(pnt->x, SCALE) / SCALE));
+			ptr->pix_x = (int)(ptr->xpm->width * (1 - fmod(pnt->x, 1)));
 		}
 	}
 	else
@@ -56,12 +57,12 @@ t_hit	*ft_proc_wall(t_plr *pnt, t_base *base, t_plr *ray)
 		if (cos(ray->dir) < 0) //looking left
 		{
 			ptr->xpm = base->EA;
-			ptr->pix_x = (int)(ptr->xpm->width * fmod(pnt->y, SCALE) / SCALE);
+			ptr->pix_x = (int)(ptr->xpm->width * fmod(pnt->y, 1));
 		}
 		else// looking down
 		{
 			ptr->xpm = base->WE;
-			ptr->pix_x = (int)(ptr->xpm->width * (1 - fmod(pnt->y, SCALE) / SCALE));
+			ptr->pix_x = (int)(ptr->xpm->width * (1 - fmod(pnt->y, 1)));
 		}
 	}
 	return (ptr);
@@ -74,19 +75,19 @@ t_hit	*ft_proc_sprite(t_plr *pnt, t_base *base, t_plr *ray)
 	float	dst;
 	float	r;
 
-	cntr.x = ((int)pnt->x >> OFFSET << OFFSET) + SCALE / 2;
-	cntr.y = ((int)pnt->y >> OFFSET << OFFSET) + SCALE / 2;
+	cntr.x = (int)pnt->x + 0.5;
+	cntr.y = (int)pnt->y + 0.5;
 	dst = ft_distance(ray->x, ray->y, cntr.x, cntr.y);
 	r = dst * tan(atan2(cntr.y - ray->y, cntr.x - ray->x) - ray->dir);
-	if (fabs(r) > (SCALE / 2))
+	if (fabs(r) > 0.5)
 		return (NULL);
 	if (!(ptr = (t_hit *)malloc(sizeof(t_hit))))
 		ft_error(ER_MEMMORY_LACK);
 	ptr->dst = dst;
-	ptr->wall_s = base->hight / 2 - SCALE *(base->hight / ptr->dst);
-	ptr->wall_e = base->hight / 2 + SCALE *(base->hight / ptr->dst);
+	ptr->wall_s = base->hight / 2 - (base->hight / ptr->dst);
+	ptr->wall_e = base->hight / 2 + (base->hight / ptr->dst);
 	ptr->xpm = base->S;
-	ptr->pix_x = ptr->xpm->width * (r / SCALE + 0.5);
+	ptr->pix_x = ptr->xpm->width * (r + 0.5);
 	return (ptr);
 }
 
@@ -119,7 +120,7 @@ int		ft_is_wall(t_plr *pnt, t_list **pnts, t_base *base, t_plr *ray)
 	char	cell;
 	t_hit	*ptr;
 
-	cell = base->map[(int)pnt->y >> OFFSET][(int)pnt->x >> OFFSET];
+	cell = base->map[(int)pnt->y][(int)pnt->x];
 	if (cell == '1')
 	{
 		ptr = ft_proc_wall(pnt, base, ray);

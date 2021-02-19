@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:19:44 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/17 16:20:35 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/19 18:56:49 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ void	ft_print_player(t_base *base)
 	static t_point	point1;
 	static t_point	point2;
 	
-	plr.x = base->plr->x / SCALE * base->map_scale;
-	plr.y = base->plr->y / SCALE * base->map_scale;
+	plr.x = base->plr->x * base->map_scale;
+	plr.y = base->plr->y * base->map_scale;
 	point1.x = plr.x + base->map_scale * cos(base->plr->dir);
 	point1.y = plr.y + base->map_scale * sin(base->plr->dir);
 	point2.x = plr.x + base->map_scale * cos(base->plr->dir - M_PI_4 * 3) * 0.7;
