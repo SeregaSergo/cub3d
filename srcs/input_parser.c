@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:44:05 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/17 16:57:24 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/21 16:34:20 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,9 @@
 
 unsigned char	what_flag(char *s)
 {
-	int	len;
-	
 	if (s == NULL)
 		return (P_EMPTY);
-	len = ft_strlen(s);
-	if (len > 2 || len < 1)
+	if (ft_strlen(s) > 2 || ft_strlen(s) < 1)
 		return (P_ERR);
 	if (!(ft_strncmp(s, "\n", 1)))
 		return (P_EMPTY);
@@ -46,7 +43,7 @@ void			parse_line(char *line, t_base *base, unsigned char *flags)
 {
 	unsigned char	flag;
 	char			**list;
-	
+
 	flag = 0;
 	if (!(list = ft_split(line, ' ')))
 		ft_error(ER_MEMMORY_LACK);

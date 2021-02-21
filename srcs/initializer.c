@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:42:52 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/19 22:20:44 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/21 20:33:00 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	put_param_plr(t_base *base, int i, int j)
 		base->plr->dir = 0;
 	else if (base->map[i][j] == 'S')
 		base->plr->dir = M_PI_2;
+	base->plr->dir += 0.0001;
 	base->plr->x = j + 0.5;
 	base->plr->y = i + 0.5;
 }
@@ -52,13 +53,18 @@ void	initialize_plr(t_base *base)
 		}
 		i++;
 	}
+	if (base->width * base->hight > 1400000)
+		base->vel = VELOCITY / 24558450.447237 / \
+		pow((base->width * base->hight), -0.913385);
+	else
+		base->vel = VELOCITY / 24558450.447237 / pow(1400000, -0.913385);
 }
 
 void	calc_map_scale(t_base *base)
 {
 	int	map_wdth;
 	int	map_hght;
-	
+
 	map_wdth = (int)(base->width / (ft_strlen(base->map[0])) / MAP_SIZE);
 	map_hght = (int)((base->hight / ft_arrlen(base->map)) / MAP_SIZE);
 	if (map_wdth < map_hght)
@@ -83,13 +89,13 @@ void	ft_initialize_input(char *file, t_base *base)
 	char			*line;
 	unsigned char	flags;
 	t_list			*head;
-	
+
 	if ((fd = open(file, O_RDONLY)) < 0)
 		ft_error(ER_READ);
 	line = NULL;
 	flags = P_EMPTY;
 	head = NULL;
-	while(get_next_line(fd, &line) == 1)
+	while (get_next_line(fd, &line) == 1)
 	{
 		if (flags != 255)
 			parse_line(line, base, &flags);
@@ -103,5 +109,4 @@ void	ft_initialize_input(char *file, t_base *base)
 	calc_map_scale(base);
 	initialize_plr(base);
 	init_struct_images(base);
-	g_velocity = 23 / (-160 * (float)(base->width * base->hight) / 4300000 + 160);
 }

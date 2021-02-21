@@ -6,11 +6,23 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 21:49:22 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/19 20:48:01 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/21 20:18:47 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
+
+int		ft_is_in_map_range(t_plr *pnt, t_base *base)
+{
+	int	i;
+	int	j;
+
+	i = (int)pnt->y + 1;
+	j = (int)pnt->x + 1;
+	if (j > base->map_width || i > base->map_hight || j < 2 || i < 2)
+		return (0);
+	return (1);
+}
 
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 {

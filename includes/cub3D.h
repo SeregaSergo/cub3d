@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 19:22:40 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/19 22:14:30 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/21 20:22:14 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,13 @@
 #include <math.h>
 #include <time.h>
 
-float	g_velocity;
-
 #define ER_ARG              2
 #define ER_READ             3
 #define ER_WRONG_PARAM      4
 #define ER_MEMMORY_LACK     5
 #define ER_NOT_ENOUGH_INFO  6
 #define ER_NOT_VALID_MAP	7
+#define	ER_SAVE_IMG			8
 
 # define P_EMPTY		0b00000000
 # define P_R      		0b00000001
@@ -53,7 +52,7 @@ float	g_velocity;
 # define KF_LEFT		0b00100000
 
 # define MAP_SIZE		4
-# define VELOCITY		0.2
+# define VELOCITY		3
 
 typedef struct		s_img
 {
@@ -112,7 +111,8 @@ typedef struct  	s_base {
 	int				map_scale;
 	int				map_width;
 	int				map_hight;
-	
+	float			vel;
+
 	t_plr			*plr;
 	unsigned char	key_flags;
 }					t_base;
@@ -134,5 +134,14 @@ int		destroy_win(void);
 void	parse_line(char *line, t_base *base, unsigned char *flags);
 int		ft_is_in_map_range(t_plr *pnt, t_base *base);
 int		ft_is_wall(t_plr *pnt, t_list **pnts, t_base *base, t_plr *ray);
+void	ft_save_image(t_base *base);
+float	ft_distance(float x1, float y1, float x2, float y2);
+int		ft_add_sort_lst(t_hit *cont, t_list **head);
+void	ft_bchar(void *s, int n, char c);
+void	*ft_charalloc(size_t count, int size, char c);
+void	ft_free_lst(t_list **lst);
+int		find_max_width_len(t_list *lst);
+void	ft_lstmap_n(t_list *lst, void *(*f)(void *, int), int size);
+void	*ft_lst_proc_line(void *content, int size);
 
 #endif
