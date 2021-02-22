@@ -6,11 +6,11 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 19:16:33 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/21 19:19:34 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/22 21:27:57 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3D.h"
+#include "../includes/cub3d.h"
 
 void	base_struct_init(t_base *base)
 {
@@ -43,8 +43,6 @@ int		main(int argc, char **argv)
 		else
 			ft_error(ER_SAVE_IMG);
 	}
-	printf("vel = %f\n", base.vel);
-	printf("w = %i, h = %i\n", base.width, base.hight);
 	mlx_hook(base.win, 2, 1L << 0, &key_press_hook, &base);
 	mlx_hook(base.win, 3, 1L << 1, &key_release_hook, &base);
 	mlx_hook(base.win, 17, 1L << 17, &destroy_win, &base);

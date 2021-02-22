@@ -6,22 +6,22 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:14:05 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/21 20:34:50 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/22 21:30:56 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3D.h"
+#include "../includes/cub3d.h"
 
 void	ft_proc_horiz_wall(float sin, t_hit *ptr, float x, t_base *base)
 {
 	if (sin < 0)
 	{
-		ptr->xpm = base->SO;
+		ptr->xpm = base->so;
 		ptr->pix_x = (int)(ptr->xpm->width * fmod(x, 1));
 	}
 	else
 	{
-		ptr->xpm = base->NO;
+		ptr->xpm = base->no;
 		ptr->pix_x = (int)(ptr->xpm->width * (1 - fmod(x, 1)));
 	}
 }
@@ -30,12 +30,12 @@ void	ft_proc_vert_wall(float cos, t_hit *ptr, float y, t_base *base)
 {
 	if (cos < 0)
 	{
-		ptr->xpm = base->EA;
+		ptr->xpm = base->ea;
 		ptr->pix_x = (int)(ptr->xpm->width * fmod(y, 1));
 	}
 	else
 	{
-		ptr->xpm = base->WE;
+		ptr->xpm = base->we;
 		ptr->pix_x = (int)(ptr->xpm->width * (1 - fmod(y, 1)));
 	}
 }
@@ -75,7 +75,7 @@ t_hit	*ft_proc_sprite(t_plr *pnt, t_base *base, t_plr *ray)
 	ptr->dst = dst;
 	ptr->wall_s = base->hight / 2 - (base->hight / ptr->dst);
 	ptr->wall_e = base->hight / 2 + (base->hight / ptr->dst);
-	ptr->xpm = base->S;
+	ptr->xpm = base->s;
 	ptr->pix_x = ptr->xpm->width * (r + 0.5);
 	return (ptr);
 }

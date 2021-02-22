@@ -6,11 +6,11 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:52:44 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/21 20:14:08 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/22 21:29:17 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3D.h"
+#include "../includes/cub3d.h"
 
 int		ft_arrlen(char **str)
 {

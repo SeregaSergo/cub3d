@@ -6,11 +6,11 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/21 20:19:53 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/21 20:23:07 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/22 22:32:37 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3D.h"
+#include "../includes/cub3d.h"
 
 void	*ft_lst_proc_line(void *content, int size)
 {
@@ -18,10 +18,12 @@ void	*ft_lst_proc_line(void *content, int size)
 	int		i;
 	char	*ptr;
 
+	if (((char *)content)[0] == '\0')
+		ft_error(ER_NOT_VALID_MAP);
 	if (!(new_cont = (char *)ft_charalloc(size + 1, sizeof(char), ' ')))
 		ft_error(ER_MEMMORY_LACK);
 	i = 0;
-	ptr = (char *)content;
+	ptr = content;
 	while (ptr[i])
 	{
 		new_cont[i + 1] = ptr[i];

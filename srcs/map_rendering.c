@@ -6,11 +6,11 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:19:44 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/21 17:03:50 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/22 21:28:56 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3D.h"
+#include "../includes/cub3d.h"
 
 int		what_color(char c)
 {

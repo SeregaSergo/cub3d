@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 19:22:40 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/22 20:56:07 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/22 22:32:16 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 # include <sys/uio.h>
 # include <stdio.h>
 # include <math.h>
-# include <time.h>
 
 # define ER_ARG				2
 # define ER_READ			3
@@ -52,7 +51,7 @@
 # define KF_LEFT		0b00100000
 
 # define MAP_SIZE		4
-# define VELOCITY		3
+# define VELOCITY		0.09
 
 typedef struct		s_img
 {
@@ -98,18 +97,17 @@ typedef struct		s_base {
 	t_img			*min_map;
 	int				hight;
 	int				width;
-	t_xpm			*NO;
-	t_xpm			*SO;
-	t_xpm			*WE;
-	t_xpm			*EA;
-	t_xpm			*S;
+	t_xpm			*no;
+	t_xpm			*so;
+	t_xpm			*we;
+	t_xpm			*ea;
+	t_xpm			*s;
 	int				col_floor;
 	int				col_ceiling;
 	char			**map;
 	int				map_scale;
 	int				map_width;
 	int				map_hight;
-	float			vel;
 	t_plr			*plr;
 	unsigned char	key_flags;
 }					t_base;

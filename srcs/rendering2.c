@@ -6,11 +6,11 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 20:46:31 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/22 20:47:04 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/22 21:29:11 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3D.h"
+#include "../includes/cub3d.h"
 
 int		ft_is_in_map_range(t_plr *pnt, t_base *base)
 {

@@ -6,11 +6,11 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 17:46:28 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/21 14:02:06 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/22 21:29:02 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3D.h"
+#include "../includes/cub3d.h"
 
 int		process_r(char *wdth, char *hght, t_base *base)
 {
@@ -44,15 +44,15 @@ int		process_xpm(unsigned char flag, char *file, t_base *base)
 	ptr->img->addr = mlx_get_data_addr(ptr->img->img, &ptr->img->bpp, \
 					&ptr->img->line_length, &ptr->img->endian);
 	if (flag == P_NO)
-		base->NO = ptr;
+		base->no = ptr;
 	else if (flag == P_SO)
-		base->SO = ptr;
+		base->so = ptr;
 	else if (flag == P_WE)
-		base->WE = ptr;
+		base->we = ptr;
 	else if (flag == P_EA)
-		base->EA = ptr;
+		base->ea = ptr;
 	else if (flag == P_S)
-		base->S = ptr;
+		base->s = ptr;
 	return (0);
 }
 

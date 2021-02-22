@@ -28,7 +28,7 @@ CFLAGS = -O2 -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME): $(OBJS) $(MLX) $(LIB)
-	$(CC) -g $(CFLAGS) -I$(INC) -L$(PATHMLX) -lmlx -L$(PATHLIB) -lcub $(OBJS) -framework OpenGL \
+	$(CC) $(CFLAGS) -I$(INC) -L$(PATHMLX) -lmlx -L$(PATHLIB) -lcub $(OBJS) -framework OpenGL \
 	-framework AppKit -o $(NAME)
 
 $(MLX):
@@ -37,7 +37,7 @@ $(MLX):
 $(LIB):
 	$(MAKE) -C $(PATHLIB)
 
-%.o: %.c ./includes/cub3D.h
+%.o: %.c ./includes/cub3d.h
 	$(CC) -c $(CFLAGS) -I$(INC) -o $@ $<
 
 bonus: all

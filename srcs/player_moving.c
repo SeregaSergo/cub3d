@@ -6,11 +6,11 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:24:41 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/21 19:34:04 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/22 21:28:59 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3D.h"
+#include "../includes/cub3d.h"
 
 static void		change_xy_plr(t_base *base, float angle, float k)
 {
@@ -19,8 +19,8 @@ static void		change_xy_plr(t_base *base, float angle, float k)
 	float	dy;
 
 	p = base->plr;
-	dx = p->x + base->vel * k * cos(p->dir + angle);
-	dy = p->y + base->vel * k * sin(p->dir + angle);
+	dx = p->x + VELOCITY * k * cos(p->dir + angle);
+	dy = p->y + VELOCITY * k * sin(p->dir + angle);
 	if (base->map[(int)base->plr->y][(int)dx] != '1')
 		base->plr->x = dx;
 	if (base->map[(int)dy][(int)base->plr->x] != '1')
@@ -56,9 +56,9 @@ void			ft_change_pos_plr(t_base *base, unsigned char flags)
 	if (flags & KF_D)
 		change_xy_plr(base, M_PI_2, k_vel);
 	if (flags & KF_LEFT)
-		base->plr->dir -= 0.3 * base->vel;
+		base->plr->dir -= 0.3 * VELOCITY;
 	if (flags & KF_RIGHT)
-		base->plr->dir += 0.3 * base->vel;
+		base->plr->dir += 0.3 * VELOCITY;
 	base->plr->dir > 2 * M_PI ? base->plr->dir -= 2 * M_PI : 0;
 	base->plr->dir < 0 ? base->plr->dir += 2 * M_PI : 0;
 }

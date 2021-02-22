@@ -6,11 +6,11 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:42:52 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/21 20:33:00 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/22 22:33:17 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3D.h"
+#include "../includes/cub3d.h"
 
 void	put_param_plr(t_base *base, int i, int j)
 {
@@ -53,11 +53,6 @@ void	initialize_plr(t_base *base)
 		}
 		i++;
 	}
-	if (base->width * base->hight > 1400000)
-		base->vel = VELOCITY / 24558450.447237 / \
-		pow((base->width * base->hight), -0.913385);
-	else
-		base->vel = VELOCITY / 24558450.447237 / pow(1400000, -0.913385);
 }
 
 void	calc_map_scale(t_base *base)

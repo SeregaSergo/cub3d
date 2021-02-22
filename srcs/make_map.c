@@ -6,11 +6,11 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 19:10:12 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/21 20:31:16 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/22 22:33:26 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3D.h"
+#include "../includes/cub3d.h"
 
 void	formating_map(t_list **head)
 {
@@ -39,7 +39,7 @@ int		process_map_list(t_list **head)
 
 	i = 0;
 	lst = *head;
-	while (lst && !((char *)(lst->content))[0])
+	while (lst && !(((char *)(lst->content))[0]))
 	{
 		tmp = lst;
 		lst = lst->next;
@@ -78,9 +78,9 @@ void	validate_map(char **map)
 	int		j;
 	char	flag;
 
-	i = 1;
+	i = 0;
 	flag = 0;
-	while (map[i])
+	while (map[++i])
 	{
 		j = 0;
 		while (map[i][++j])
@@ -95,7 +95,6 @@ void	validate_map(char **map)
 					flag++;
 			}
 		}
-		i++;
 	}
 	if (flag != 1)
 		ft_error(ER_NOT_VALID_MAP);

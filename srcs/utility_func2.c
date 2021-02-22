@@ -6,11 +6,11 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/21 20:15:52 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/21 20:34:06 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/22 21:29:21 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3D.h"
+#include "../includes/cub3d.h"
 
 /*
 ** Fills n symbols of the string with given char
