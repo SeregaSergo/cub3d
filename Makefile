@@ -12,7 +12,8 @@ SRCS =	./srcs/main.c \
 		./srcs/hits.c \
 		./srcs/save_bmp.c \
 		./srcs/utility_func2.c \
-		./srcs/make_map2.c
+		./srcs/make_map2.c \
+		./srcs/rendering2.c
 OBJS = $(SRCS:%.c=%.o)
 LIB = libcub.a
 MLX = libmlx.a
@@ -20,7 +21,7 @@ PATHLIB = my_libs/
 PATHMLX = mlx/
 INC = includes
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -O2 -Wall -Wextra -Werror
 
 .PHONY: all clean fclean re bonus
 

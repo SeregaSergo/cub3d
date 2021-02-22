@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/20 18:02:04 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/21 17:05:20 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/22 19:17:09 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,34 @@ void	ft_write_image(int fd, t_base *base)
 		write(fd, 0, pad);
 }
 
+void	ft_write_map(int fd, t_base *base, int w, int h)
+{
+	int		width;
+	int		hight;
+	char	*ptr;
+	int		offset;
+
+	lseek(fd, 54 + (base->hight - h) * base->width * 3, SEEK_SET);
+	offset = (base->width - w) * 3;
+	hight = h - 1;
+	while (hight >= 0)
+	{
+		width = 0;
+		ptr = base->min_map->addr + w * hight * 4;
+		while (width < w)
+		{
+			if (*(unsigned int *)ptr != 0xFF000000)
+				write(fd, ptr, 3);
+			else
+				lseek(fd, 3, SEEK_CUR);
+			ptr += 4;
+			width++;
+		}
+		hight--;
+		lseek(fd, offset, SEEK_CUR);
+	}
+}
+
 void	ft_write_header(int fd, int width, int height)
 {
 	unsigned char		header[54];
@@ -70,6 +98,8 @@ void	ft_save_image(t_base *base)
 	ft_cast_rays(base);
 	ft_write_header(fd, base->width, base->hight);
 	ft_write_image(fd, base);
+	ft_write_map(fd, base, base->map_width * base->map_scale, \
+	base->map_hight * base->map_scale);
 	close(fd);
 	exit(0);
 }

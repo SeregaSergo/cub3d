@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 19:47:39 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/01 21:38:40 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/22 20:49:19 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int					ft_printf(const char *format, ...);
 # define FLAG_SHARP		0b00000001
 # define FLAG_MINUS		0b00000010
 # define FLAG_PLUS		0b00000100
-# define FLAG_SPACE		0b00001000 
+# define FLAG_SPACE		0b00001000
 # define FLAG_ZERO		0b00010000
 
 int					ft_parser(const char *format, t_format *frmt, va_list ap);

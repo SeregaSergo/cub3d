@@ -1,4 +1,4 @@
-R 1000 600
+R 123123 11230
 NO ./textures/redbrick.xpm
 SO ./textures/north.xpm
 WE ./textures/wood.xpm
