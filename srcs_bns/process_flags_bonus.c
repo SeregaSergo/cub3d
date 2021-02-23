@@ -6,11 +6,11 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 17:46:28 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/23 22:13:36 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/23 22:34:32 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3dbns.h"
+#include "../includes/cub3d_bonus.h"
 
 int		process_r(char *wdth, char *hght, t_base *base)
 {

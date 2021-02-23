@@ -6,11 +6,11 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 21:50:44 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/23 20:29:07 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/23 22:33:56 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3dbns.h"
+#include "../includes/cub3d_bonus.h"
 
 int		key_press_hook(int keycode, t_base *base)
 {

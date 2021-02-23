@@ -6,11 +6,11 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:24:41 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/23 20:29:35 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/23 22:34:28 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3dbns.h"
+#include "../includes/cub3d_bonus.h"
 
 static void		change_xy_plr(t_base *base, float angle, float k)
 {

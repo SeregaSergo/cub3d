@@ -6,11 +6,11 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/20 18:02:04 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/23 20:29:44 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/23 22:34:48 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3dbns.h"
+#include "../includes/cub3d_bonus.h"
 
 void	set_int_in_char(unsigned char *start, int value)
 {

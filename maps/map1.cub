@@ -1,10 +1,10 @@
 R 1600 900
 NO ./textures/redbrick.xpm
 SO ./textures/north.xpm
-WE ./textures/Yoda.xpm
-EA ./textures/Yoda.xpm
+WE ./textures/winter.xpm
+EA ./textures/mount.xpm
 
-S   ./textures/darth.xpm
+S   ./textures/tree.xpm
 F 80,137,66
 C 204,229,255
 

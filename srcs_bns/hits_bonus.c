@@ -6,11 +6,11 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:14:05 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/23 21:38:12 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/23 22:33:47 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3dbns.h"
+#include "../includes/cub3d_bonus.h"
 
 void	ft_proc_horiz_wall(float sin, t_hit *ptr, float x, t_base *base)
 {

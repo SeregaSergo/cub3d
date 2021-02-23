@@ -6,11 +6,11 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 19:10:12 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/23 21:34:07 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/23 22:34:14 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3dbns.h"
+#include "../includes/cub3d_bonus.h"
 
 void	formating_map(t_list **head)
 {

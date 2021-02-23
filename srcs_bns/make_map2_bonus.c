@@ -6,11 +6,11 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/21 20:19:53 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/23 20:29:29 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/23 22:34:18 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3dbns.h"
+#include "../includes/cub3d_bonus.h"
 
 void	*ft_lst_proc_line(void *content, int size)
 {

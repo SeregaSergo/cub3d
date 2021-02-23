@@ -6,11 +6,11 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:19:44 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/23 22:11:07 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/23 22:34:23 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3dbns.h"
+#include "../includes/cub3d_bonus.h"
 
 int		what_color(char c)
 {

@@ -6,11 +6,11 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:44:05 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/23 21:35:18 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/23 22:34:07 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3dbns.h"
+#include "../includes/cub3d_bonus.h"
 
 unsigned int	what_flag(char *s)
 {

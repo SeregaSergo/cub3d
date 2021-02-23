@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3dbns.h"
+#include "../includes/cub3d_bonus.h"
 
 int		ft_init_horiz(t_plr *ray, float *xo, float *yo, t_plr *pnt)
 {
