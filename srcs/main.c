@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 19:16:33 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/22 21:27:57 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/23 21:08:36 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	base_struct_init(t_base *base)
 	char	*name;
 
 	name = "Yo dude!";
-	base->mlx = mlx_init();
 	base->win = mlx_new_window(base->mlx, base->width, base->hight, name);
 	base->scr->img = mlx_new_image(base->mlx, base->width, base->hight);
 	base->scr->addr = mlx_get_data_addr(base->scr->img, &base->scr->bpp, \
@@ -34,6 +33,7 @@ int		main(int argc, char **argv)
 
 	if (argc > 3 || argc < 2)
 		ft_error(ER_ARG);
+	base.mlx = mlx_init();
 	ft_initialize_input(argv[1], &base);
 	base_struct_init(&base);
 	if (argc == 3)

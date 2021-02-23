@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:14:05 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/22 21:30:56 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/23 19:42:08 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ void	ft_proc_vert_wall(float cos, t_hit *ptr, float y, t_base *base)
 	if (cos < 0)
 	{
 		ptr->xpm = base->ea;
-		ptr->pix_x = (int)(ptr->xpm->width * fmod(y, 1));
+		ptr->pix_x = (int)(ptr->xpm->width * (1 - fmod(y, 1)));
 	}
 	else
 	{
 		ptr->xpm = base->we;
-		ptr->pix_x = (int)(ptr->xpm->width * (1 - fmod(y, 1)));
+		ptr->pix_x = (int)(ptr->xpm->width * fmod(y, 1));
 	}
 }
 
