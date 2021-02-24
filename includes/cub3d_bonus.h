@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 19:22:40 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/23 23:00:55 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/24 18:08:24 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define ER_NOT_ENOUGH_INFO	6
 # define ER_NOT_VALID_MAP	7
 # define ER_SAVE_IMG		8
+# define ER_MAP_NAME		9
 
 # define P_EMPTY		0
 # define P_R      		1

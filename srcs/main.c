@@ -6,7 +6,7 @@
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 19:16:33 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/23 21:08:36 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/24 18:23:11 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,24 @@ void	base_struct_init(t_base *base)
 	&base->min_map->bpp, &base->min_map->line_length, &base->min_map->endian);
 }
 
+void	ft_check_ext(char *map)
+{
+	int	len;
+
+	len = ft_strlen(map);
+	if (len < 4)
+		ft_error(ER_MAP_NAME);
+	if (ft_strncmp(&(map[len - 4]), ".cub", 5))
+		ft_error(ER_MAP_NAME);
+}
+
 int		main(int argc, char **argv)
 {
 	t_base	base;
 
 	if (argc > 3 || argc < 2)
 		ft_error(ER_ARG);
+	ft_check_ext(argv[1]);
 	base.mlx = mlx_init();
 	ft_initialize_input(argv[1], &base);
 	base_struct_init(&base);

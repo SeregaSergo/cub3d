@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utility_func.c                                     :+:      :+:    :+:   */
+/*   utility_func_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bswag <bswag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:52:44 by bswag             #+#    #+#             */
-/*   Updated: 2021/02/23 22:34:53 by bswag            ###   ########.fr       */
+/*   Updated: 2021/02/24 18:19:32 by bswag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,18 +70,20 @@ void	ft_error(unsigned char er)
 {
 	ft_printf("Error\n");
 	if (er == ER_ARG)
-		ft_printf("You passed incorrect number of arguments.");
+		ft_printf("You passed incorrect number of arguments.\n");
 	else if (er == ER_READ)
-		ft_printf("Can't open the file.");
+		ft_printf("Can't open the file.\n");
 	else if (er == ER_WRONG_PARAM)
-		ft_printf("You passed incorrect parameters.");
+		ft_printf("You passed incorrect parameters of map.\n");
 	else if (er == ER_MEMMORY_LACK)
-		ft_printf("Not enough memmory to allocate.");
+		ft_printf("Not enough memmory to allocate.\n");
 	else if (er == ER_NOT_ENOUGH_INFO)
-		ft_printf("Needed more information about the map.");
+		ft_printf("Needed more information about the map.\n");
 	else if (er == ER_NOT_VALID_MAP)
-		ft_printf("The map is not valid.");
+		ft_printf("The map is not valid.\n");
 	else if (er == ER_SAVE_IMG)
-		ft_printf("To get an image put '--save' as a second parameter");
+		ft_printf("To get an image put '--save' as a second parameter\n");
+	else if (er == ER_MAP_NAME)
+		ft_printf("Not valid map name\n");
 	exit(1);
 }
