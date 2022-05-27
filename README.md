@@ -6,3 +6,4 @@ MiniLibX is a tiny graphics library which allows you to do the most basic things
 
 Map configurations are located in "./maps" directory. You can get more info about config file in "subject.pdf".
   
+![ezgif com-gif-maker(1)](https://user-images.githubusercontent.com/76565555/170744867-497d3e70-7490-45a3-ba75-5874e187968f.gif)
